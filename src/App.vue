@@ -20,32 +20,32 @@ document.documentElement.classList.add('dark')
 
 const projects = [
   {
-    image: "src/assets/images/apptor.png",
+    image: "/images/apptor.png",
     title: "Apptor",
     description: "Low code application - internal Expeed project"
   },
   {
-    image: "src/assets/images/schneider-electric.jpg",
+    image: "/images/schneider-electric.jpg",
     title: "Schneider Electric",
     description: "Worked on multiple tickets (features/bugs) - Schneider client"
   },
   {
-    image: "src/assets/images/unity-tools.jpg",
+    image: "/images/unity-tools.jpg",
     title: "Unity Tools",
     description: "Worked on custom unity tools - Viz Lab"
   },
   {
-    image: "src/assets/images/weekly-bucket.jpg",
+    image: "/images/weekly-bucket.jpg",
     title: "Weekly Bucket",
     description: "Todo App with a twist - College project, front-end"
   },
   {
-    image: "src/assets/images/skeleton-rush.png",
+    image: "/images/skeleton-rush.png",
     title: "Skeleton Rush",
     description: "2.5D Run and Shoot game - Personal, Highschool"
   },
   {
-    image: "src/assets/images/fearless-run.jpg",
+    image: "/images/fearless-run.jpg",
     title: "Fearless Run",
     description: "2D Dodge game - Personal, college"
   },
@@ -130,7 +130,7 @@ const skills = [
 
 <template>
   <header>
-    <img alt="Avatar" class="avatar" src="./assets/images/avatar.jpg" width="125" height="125" />
+    <img alt="Avatar" class="avatar" src="/images/avatar.jpg" width="125" height="125" />
     <h1 class="green">Hi, I am Luigi Leuzzi</h1>
     <h3>Full-stack Developer</h3>
     <p> clean and intuitive user interfaces | scalable and performant systems</p>
