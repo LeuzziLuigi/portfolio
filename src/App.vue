@@ -197,7 +197,10 @@ const skills = [
       <Progress :model-value=skill.value />
     </div>
 
-
+    <h2>
+      Contact
+    </h2>
+    <p>leuzzi.luigi98@gmail.com</p>
 
   </main>
 </template>
