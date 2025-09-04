@@ -11,6 +11,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import Autoplay from 'embla-carousel-autoplay'
 import emblaCarouselVue from 'embla-carousel-vue'
@@ -22,32 +32,38 @@ const projects = [
   {
     image: "/images/apptor.png",
     title: "Apptor",
-    description: "Low code application - internal Expeed project"
+    description: "Low code Web Application",
+    meta: 'Expeed, software engineer'
   },
   {
     image: "/images/schneider-electric.jpg",
     title: "Schneider Electric",
-    description: "Worked on multiple tickets (features/bugs) - Schneider client"
+    description: "Multiple Client's projects",
+    meta: 'Expeed, software engineer'
   },
   {
     image: "/images/unity-tools.jpg",
-    title: "Unity Tools",
-    description: "Worked on custom unity tools - Viz Lab"
+    title: "XR Ambisonics",
+    description: "Unity Tools to create music-reactive visualizations",
+    meta: 'Viz Lab, developer'
   },
   {
     image: "/images/weekly-bucket.jpg",
     title: "Weekly Bucket",
-    description: "Todo App with a twist - College project, front-end"
+    description: "Weekly planner with intuitive user interface",
+    meta: 'College Project, front-end'
   },
   {
     image: "/images/skeleton-rush.png",
     title: "Skeleton Rush",
-    description: "2.5D Run and Shoot game - Personal, Highschool"
+    description: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
+    meta: 'Personal Project, developer'
   },
   {
     image: "/images/fearless-run.jpg",
     title: "Fearless Run",
-    description: "2D Dodge game - Personal, college"
+    description: "A mobile arcade video game. Dodge enemies and get the highest score",
+    meta: 'Personal Project, developer'
   },
 ]
 
@@ -133,7 +149,8 @@ const skills = [
     <img alt="Avatar" class="avatar" src="/images/avatar.jpg" width="125" height="125" />
     <h1 class="green">Hi, I am Luigi Leuzzi</h1>
     <h3>Full-stack Developer</h3>
-    <p> clean and intuitive user interfaces | scalable and performant systems</p>
+    <span class="hidden sm:inline">clean and intuitive user interfaces | scalable and performant systems</span>
+    <span class="sm:hidden">clean and intuitive UIs | scalable architectures</span>
   </header>
   <main>
     <h2>About</h2>
@@ -149,46 +166,39 @@ const skills = [
     </p>
     <h2>Projects</h2>
     <div class="flex justify-center">
-      <Carousel loop="true" class="relative w-full max-w-xs md:max-w-lg" :plugins="[Autoplay({
-        delay: 2500,
-      })]">
-        <CarouselContent>
-          <CarouselItem v-for="project in projects" class="md:basis-1/3 lg:basis-1/3">
-            <div class="p-1">
-              <Card>
+      <div loop="true" class="relative w-full">
+        <article v-for="(project, index) in projects">
 
+          <Dialog>
+            <div class="flex">
 
-                <Dialog>
-                  <DialogTrigger as-child>
+              <DialogTrigger as-child>
+                <img class="w-72 object-scale-down cursor-pointer" :src=project.image :alt=project.title></img>
+              </DialogTrigger>
 
-
-                    <CardContent class="flex aspect-video items-center justify-center p-1">
-                      <img :src=project.image :alt=project.title></img>
-                    </CardContent>
-
-                  </DialogTrigger>
-                  <DialogContent class="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>{{ project.title }}</DialogTitle>
-                      <DialogDescription>
-                        {{ project.description }}
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div class="grid gap-4 py-4">
-                      <img :src=project.image :alt=project.title></img>
-
-                    </div>
-                  </DialogContent>
-                </Dialog>
-
-
-              </Card>
+              <div class="content-center pl-4">
+                <h3>{{ project.title }}</h3>
+                <p class="pt-1 text-sm">{{ project.description }}</p>
+              </div>
             </div>
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+
+
+            <DialogContent class="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>{{ project.title }}</DialogTitle>
+                <DialogDescription>
+                  {{ project.description }}
+                </DialogDescription>
+              </DialogHeader>
+              <div class="grid gap-4 py-4">
+                <img :src=project.image :alt=project.title></img>
+
+              </div>
+            </DialogContent>
+          </Dialog>
+          <Separator style="margin-top:1rem; margin-bottom: 1rem;" v-if="index < projects.length - 1" />
+        </article>
+      </div>
     </div>
 
     <h2>Skills</h2>
@@ -206,25 +216,6 @@ const skills = [
 </template>
 
 <style scoped>
-h1 {
-  font-size: 2rem;
-}
-
-h2 {
-  font-size: 1.5rem;
-}
-
-h1,
-h2 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.5rem;
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
 header {
   display: flex;
   flex-direction: column;

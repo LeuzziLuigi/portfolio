@@ -1,12 +1,12 @@
 @import './base.css';
-@import './prime-vue.css';
+@import './custom.css';
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 #app {
-  max-width: 603px;
+  max-width: 640px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
