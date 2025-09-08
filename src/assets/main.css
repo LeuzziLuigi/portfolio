@@ -1,37 +1,8 @@
-@import './base.css';
 @import './custom.css';
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-#app {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-}
 
 @theme inline {
   --color-background: var(--background);
@@ -73,7 +44,7 @@ a,
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: #f9f9f9;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -109,7 +80,7 @@ a,
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #181818;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
   --card-foreground: oklch(0.985 0 0);
