@@ -4,27 +4,23 @@ import { Progress } from "@/components/ui/progress"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
+  DialogDescription, DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog"
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+
 import { Separator } from '@/components/ui/separator'
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import Autoplay from 'embla-carousel-autoplay'
 import emblaCarouselVue from 'embla-carousel-vue'
 emblaCarouselVue.globalOptions = { loop: true }
+
+interface Skill {
+  name: string;
+  tags: string[];
+  value: number;
+}
 
 document.documentElement.classList.add('dark')
 
@@ -32,114 +28,444 @@ const projects = [
   {
     image: "/images/apptor.png",
     title: "Apptor",
-    description: "Low code Web Application",
+    summary: "Low code Web Application",
+    description: "From UI to Data management to Deployment, Apptor streamlines this process making it easier to develop applications. Components can easily be customized by dragging and dropping them onto the canvas. Everything is converted into JSON which will then be parsed by the framework",
     meta: 'Expeed, software engineer'
   },
   {
-    image: "/images/schneider-electric.jpg",
-    title: "Schneider Electric",
-    description: "Multiple Client's projects",
-    meta: 'Expeed, software engineer'
+    image: "/images/zeigo.png",
+    title: "Zeigo Activate",
+    summary: "Reduce their environmental impact and lead global decarbonization.",
+    description: "I have developed countless features for Schneider. Here I learned to work in a large team with the classic fetures/bugs experience through Jira, paired with daily standup following the Agile methodology. For Zeigo Activate I was particulary adept in customizing Kendo UI, since it often didn't support some feature out of the box",
+    meta: 'Schneider - Expeed client, software engineer'
   },
   {
     image: "/images/unity-tools.jpg",
     title: "XR Ambisonics",
-    description: "Unity Tools to create music-reactive visualizations",
+    summary: "Unity Tools to create music-reactive visualizations",
+    description: "Tools to generate various shapes that react to music. Visualizations can be viewed in augmented reality through your phone at specific locations in the world",
     meta: 'Viz Lab, developer'
   },
   {
     image: "/images/weekly-bucket.jpg",
     title: "Weekly Bucket",
-    description: "Weekly planner with intuitive user interface",
+    summary: "Weekly planner with intuitive user interface",
+    description: "Enter tasks and the desired amount of times for each week. Simply tap on a task to get closer to your goal. Track your history and modify tasks at any time",
     meta: 'College Project, front-end'
   },
   {
     image: "/images/skeleton-rush.png",
     title: "Skeleton Rush",
-    description: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
+    summary: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
+    description: "A 2.5D shooter video game. 2.5D refers to games developed in a 3D environment but with movements constrained in 2 axis. You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken",
     meta: 'Personal Project, developer'
   },
   {
     image: "/images/fearless-run.jpg",
     title: "Fearless Run",
-    description: "A mobile arcade video game. Dodge enemies and get the highest score",
+    summary: "A mobile arcade video game. Dodge enemies and get the highest score",
+    description: "A simple 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities",
     meta: 'Personal Project, developer'
   },
 ]
 
-const skills = [
+enum Tag {
+  Frontend = "Frontend",
+  Backend = "Backend",
+  WebDev = "Web Development",
+  GameDev = "Game Development",
+  Cloud = "Cloud",
+  Mobile = "Mobile",
+  Scripting = "Scripting",
+  Data = "Data",
+  Testing = "Testing",
+  API = "Api",
+  Architecture = "Architecture",
+  AIML = "AI/ML",
+  Communication = "Communication",
+  Library = "Library",
+  BuildTool = "Build tool",
+  Devops = "Devops",
+  IDE = "IDE",
+  Platform = "Platform",
+  ProjectManagement = "Project Management",
+  VersionControl = "Version Control"
+}
+
+let skillFrameworks: Skill[] = [
   {
-    name: 'Angular',
-    value: 90,
+    "name": "Angular",
+    "tags": [Tag.Frontend],
+    "value": 90
   },
   {
-    name: '.Net',
-    value: 80,
+    "name": ".Net",
+    "tags": [Tag.Backend],
+    "value": 80
   },
   {
-    name: 'Unity',
-    value: 85,
+    "name": "React",
+    "tags": [Tag.Frontend, Tag.Library],
+    "value": 71
   },
   {
-    name: 'Azure',
-    value: 65,
+    "name": "FastAPI",
+    "tags": [Tag.Backend],
+    "value": 70
   },
   {
-    name: 'Android Studio',
-    value: 65,
+    "name": "Vue.js",
+    "tags": [Tag.Frontend],
+    "value": 70
   },
   {
-    name: 'HTML',
-    value: 95,
+    "name": "Android Studio",
+    "tags": [Tag.Mobile, Tag.Frontend],
+    "value": 66
   },
   {
-    name: 'CSS',
-    value: 80,
+    "name": "Flask",
+    "tags": [Tag.Backend],
+    "value": 65
   },
   {
-    name: 'Javascript / Typescript',
-    value: 96,
+    "name": "Next",
+    "tags": [Tag.Frontend],
+    "value": 61
   },
   {
-    name: 'Python',
-    value: 80,
+    "name": "Express",
+    "tags": [Tag.Backend],
+    "value": 60
   },
   {
-    name: 'PHP',
-    value: 70,
+    "name": "Spring Boot",
+    "tags": [Tag.Backend],
+    "value": 59
+  }
+];
+
+let skillLanguages: Skill[] = [
+  {
+    "name": "Javascript / Typescript",
+    "tags": [Tag.Frontend, Tag.Backend],
+    "value": 96
   },
   {
-    name: 'C#',
-    value: 85,
+    "name": "HTML",
+    "tags": [Tag.Frontend],
+    "value": 95
   },
   {
-    name: 'C++',
-    value: 80,
+    "name": "SQL",
+    "tags": [Tag.Data],
+    "value": 90
   },
   {
-    name: 'Java',
-    value: 70,
+    "name": "C#",
+    "tags": [Tag.Backend, Tag.GameDev, Tag.Scripting],
+    "value": 86
   },
   {
-    name: 'SQL',
-    value: 90,
+    "name": "YAML",
+    "tags": [Tag.Devops],
+    "value": 85
   },
   {
-    name: 'GraphQL',
-    value: 60,
+    "name": "C++",
+    "tags": [Tag.Backend, Tag.Scripting, Tag.GameDev],
+    "value": 81
   },
   {
-    name: 'Cypress',
-    value: 70
+    "name": "CSS",
+    "tags": [Tag.Frontend],
+    "value": 80
   },
   {
-    name: 'Git / Github',
-    value: 90,
+    "name": "Python",
+    "tags": [Tag.Backend, Tag.Scripting],
+    "value": 78
   },
   {
-    name: 'Jira',
-    value: 80,
+    "name": "Bash",
+    "tags": [Tag.Scripting],
+    "value": 75
   },
+  {
+    "name": "Java",
+    "tags": [Tag.Backend],
+    "value": 70
+  },
+  {
+    "name": "PHP",
+    "tags": [Tag.Backend],
+    "value": 69
+  },
+  {
+    "name": "PowerShell",
+    "tags": [Tag.Scripting],
+    "value": 68
+  },
+  {
+    "name": "GraphQL",
+    "tags": [Tag.Data],
+    "value": 60
+  }
+];
+
+let skillEnvironments: Skill[] = [
+  {
+    "name": "VS Code",
+    "tags": [Tag.IDE],
+    "value": 97
+  },
+  {
+    "name": "Unity",
+    "tags": [Tag.GameDev],
+    "value": 85
+  },
+  {
+    "name": "Jupyter Notebook",
+    "tags": [Tag.AIML],
+    "value": 80
+  },
+  {
+    "name": "Azure",
+    "tags": [Tag.Cloud, Tag.Platform],
+    "value": 75
+  },
+  {
+    "name": "Visual Studio",
+    "tags": [Tag.IDE],
+    "value": 74
+  },
+  {
+    "name": "Node.js",
+    "tags": [Tag.Backend],
+    "value": 70
+  },
+  {
+    "name": "IntelliJ IDEA",
+    "tags": [Tag.Backend],
+    "value": 66
+  },
+  {
+    "name": "Google Cloud Platform (GCP)",
+    "tags": [Tag.Cloud],
+    "value": 60
+  },
+  {
+    "name": "UnrealEngine",
+    "tags": [Tag.GameDev],
+    "value": 60
+  },
+  {
+    "name": "Amazon Web Services (AWS)",
+    "tags": [Tag.Cloud],
+    "value": 55
+  },
+  {
+    "name": "Hugging Face",
+    "tags": [Tag.AIML],
+    "value": 50
+  }
+];
+
+let skillConcepts: Skill[] = [
+  {
+    "name": "Component-Based Architecture",
+    "tags": [Tag.Architecture],
+    "value": 90
+  },
+  {
+    "name": "JSON Web Tokens (JWT)",
+    "tags": [Tag.Data],
+    "value": 85
+  },
+  {
+    "name": "OAuth 2.0",
+    "tags": [Tag.Data],
+    "value": 84
+  },
+  {
+    "name": "Microservices",
+    "tags": [Tag.Architecture],
+    "value": 80
+  },
+  {
+    "name": "Model View Controller (MVC)",
+    "tags": [Tag.Architecture],
+    "value": 79
+  },
+  {
+    "name": "Monolith Architecture",
+    "tags": [Tag.Architecture],
+    "value": 75
+  },
+  {
+    "name": "Domain Driven Design (DDD)",
+    "tags": [Tag.Architecture],
+    "value": 65
+  },
+  {
+    "name": "WebSockets",
+    "tags": [Tag.Backend],
+    "value": 64
+  }
+];
+
+let skillDBMSs: Skill[] = [
+  {
+    "name": "SQL Server Management Studio (SSMS)",
+    "tags": [Tag.Data],
+    "value": 90
+  },
+  {
+    "name": "MySQL",
+    "tags": [Tag.Data],
+    "value": 80
+  },
+  {
+    "name": "SQLite",
+    "tags": [Tag.Data],
+    "value": 75
+  },
+  {
+    "name": "PostgreSQL",
+    "tags": [Tag.Data],
+    "value": 65
+  }
+];
+
+let skillLibraries: Skill[] = [
+  {
+    "name": "Tailwind",
+    "tags": [Tag.Frontend],
+    "value": 85
+  },
+  {
+    "name": "Kendo UI",
+    "tags": [Tag.Frontend],
+    "value": 80
+  },
+  {
+    "name": "Module/Native Federation Federation",
+    "tags": [Tag.BuildTool],
+    "value": 83
+  },
+  {
+    "name": "PrimeNg",
+    "tags": [Tag.Frontend],
+    "value": 75
+  },
+  {
+    "name": "Angular Material UI",
+    "tags": [Tag.Frontend],
+    "value": 70
+  },
+  {
+    "name": "TensorFlow",
+    "tags": [Tag.AIML],
+    "value": 69
+  },
+  {
+    "name": "PyTorch",
+    "tags": [Tag.AIML],
+    "value": 65
+  },
+  {
+    "name": "Shadcn",
+    "tags": [Tag.Frontend],
+    "value": 64
+  },
+  {
+    "name": "NumPy",
+    "tags": [Tag.AIML],
+    "value": 55
+  },
+  {
+    "name": "Pandas",
+    "tags": [Tag.AIML],
+    "value": 54
+  }
+];
+
+let skillTools: Skill[] = [
+  {
+    "name": "Git / Github",
+    "tags": [Tag.Communication, Tag.Devops, Tag.VersionControl],
+    "value": 91
+  },
+  {
+    "name": "Microsoft Teams",
+    "tags": [Tag.Communication],
+    "value": 90
+  },
+  {
+    "name": "Postman",
+    "tags": [Tag.Backend, Tag.API],
+    "value": 85
+  },
+  {
+    "name": "BitBucket",
+    "tags": [Tag.Communication],
+    "value": 81
+  },
+  {
+    "name": "Jira",
+    "tags": [Tag.Communication, Tag.ProjectManagement],
+    "value": 80
+  },
+  {
+    "name": "Cypress",
+    "tags": [Tag.Testing],
+    "value": 71
+  },
+  {
+    "name": "Docker",
+    "tags": [Tag.Devops],
+    "value": 70
+  },
+  {
+    "name": "GitHub Actions",
+    "tags": [Tag.Devops],
+    "value": 69
+  },
+  {
+    "name": "Vite",
+    "tags": [Tag.BuildTool],
+    "value": 68
+  },
+  {
+    "name": "Webpack",
+    "tags": [Tag.BuildTool],
+    "value": 67
+  },
+  {
+    "name": "Figma",
+    "tags": [Tag.Frontend],
+    "value": 66
+  },
+  {
+    "name": "Puppetteer",
+    "tags": [Tag.Testing],
+    "value": 65
+  },
+  {
+    "name": "Jasmine",
+    "tags": [Tag.Testing],
+    "value": 60
+  },
+  {
+    "name": "Blender",
+    "tags": [Tag.GameDev],
+    "value": 55
+  },
+  {
+    "name": "Jenkins",
+    "tags": [Tag.Devops],
+    "value": 50
+  }
 ];
 
 </script>
@@ -178,18 +504,17 @@ const skills = [
 
               <div class="content-center pl-4">
                 <h3>{{ project.title }}</h3>
-                <p class="pt-1 text-sm">{{ project.description }}</p>
+                <p class="pt-1 text-sm text-muted-foreground">{{ project.summary }}</p>
               </div>
             </div>
 
 
-            <DialogContent class="sm:max-w-[425px]">
-              <DialogHeader>
+            <DialogContent class="sm:max-w-[500px]">
+              <DialogHeader class="gap-0">
                 <DialogTitle>{{ project.title }}</DialogTitle>
-                <DialogDescription>
-                  {{ project.description }}
-                </DialogDescription>
+                <DialogDescription>{{ project.meta }}</DialogDescription>
               </DialogHeader>
+              {{ project.description }}
               <div class="grid gap-4 py-4">
                 <img :src=project.image :alt=project.title></img>
 
@@ -202,10 +527,41 @@ const skills = [
     </div>
 
     <h2>Skills</h2>
-    <div v-for="skill in skills">
-      <h4>{{ skill.name }}</h4>
-      <Progress :model-value=skill.value />
-    </div>
+    <h3>Frameworks</h3>
+    <span class="pr-2" v-for="skill in skillFrameworks">
+      <Badge>{{ skill.name }}</Badge>
+    </span>
+    <Separator style="margin-top:1rem; margin-bottom: 1rem;" />
+
+
+    <h3>Languages</h3>
+    <span class="pr-2" v-for="skill in skillLanguages">
+      <Badge>{{ skill.name }}</Badge>
+    </span>
+    <Separator style="margin-top:1rem; margin-bottom: 1rem;" />
+
+    <h3>Libraries</h3>
+    <span class="pr-2" v-for="skill in skillLibraries">
+      <Badge>{{ skill.name }}</Badge>
+    </span>
+    <Separator style="margin-top:1rem; margin-bottom: 1rem;" />
+
+    <h3>Environments</h3>
+    <span class="pr-2" v-for="skill in skillEnvironments">
+      <Badge>{{ skill.name }}</Badge>
+    </span>
+    <Separator style="margin-top:1rem; margin-bottom: 1rem;" />
+
+    <h3>Database Managament Systems</h3>
+    <span class="pr-2" v-for="skill in skillDBMSs">
+      <Badge>{{ skill.name }}</Badge>
+    </span>
+    <Separator style="margin-top:1rem; margin-bottom: 1rem;" />
+
+    <h3>Concepts</h3>
+    <span class="pr-2" v-for="skill in skillConcepts">
+      <Badge>{{ skill.name }}</Badge>
+    </span>
 
     <h2>
       Contact
