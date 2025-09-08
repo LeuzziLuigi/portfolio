@@ -14,6 +14,8 @@ import { Separator } from '@/components/ui/separator'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 
+import { Github, Linkedin } from 'lucide-vue-next'
+
 interface Skill {
   name: string;
   tags: string[];
@@ -472,13 +474,21 @@ const tags = Array.from({ length: 50 }).map(
 
 <template>
   <ScrollArea class="h-screen w-screen rounded-md border flex center">
-    <div class="p-4 max-w-lg sm:max-w-2xl place-self-center">
+    <div class="pt-8 pb-10 max-w-lg sm:max-w-2xl place-self-center">
       <header class="flex flex-col place-items-center">
         <img alt="Avatar" class="rounded-[50%] w-40" src="/images/avatar.jpg" />
         <h1 class="green">Hi, I am Luigi Leuzzi</h1>
         <h3>Full-stack Developer</h3>
         <span class="hidden sm:inline">clean and intuitive user interfaces | scalable and performant systems</span>
         <span class="sm:hidden">clean and intuitive UIs | scalable architectures</span>
+        <div class="flex gap-4 mt-2 pl-1.5">
+          <a href="https://github.com/LeuzziLuigi" target="_blank">
+            <Github class="h-6 w-6 text-muted-foreground hover:text-chart-2" />
+          </a>
+          <a href="https://www.linkedin.com/in/luigileuzzi/" target="_blank">
+            <Linkedin class="h-6 w-6 text-muted-foreground hover:text-chart-2" />
+          </a>
+        </div>
       </header>
       <main>
         <h2>About</h2>
@@ -565,12 +575,6 @@ const tags = Array.from({ length: 50 }).map(
         <span class="pr-2" v-for="skill in skillConcepts">
           <Badge>{{ skill.name }}</Badge>
         </span>
-
-        <h2>
-          Contact
-        </h2>
-        <p>leuzzi.luigi98@gmail.com</p>
-
       </main>
     </div>
   </ScrollArea>
