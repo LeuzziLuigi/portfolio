@@ -512,7 +512,7 @@ const skills = [
     <div class="p-8 pb-10 max-w-lg sm:max-w-2xl place-self-center">
       <header class="flex flex-col place-items-center">
         <img alt="Avatar" class="rounded-[50%] w-40" src="/images/avatar.jpg" />
-        <h1 class="green">Hi, I am Luigi Leuzzi</h1>
+        <h1 class="green mt-4">Hi, I am Luigi Leuzzi</h1>
         <h3>Full-stack Developer</h3>
         <span class="hidden sm:inline">clean and intuitive user interfaces | scalable and performant systems</span>
         <span class="sm:hidden">clean and intuitive UIs | scalable architectures</span>
