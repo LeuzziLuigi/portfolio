@@ -474,7 +474,7 @@ const tags = Array.from({ length: 50 }).map(
 
 <template>
   <ScrollArea class="h-screen w-screen rounded-md border flex center">
-    <div class="pt-8 pb-10 max-w-lg sm:max-w-2xl place-self-center">
+    <div class="p-8 pb-10 max-w-lg sm:max-w-2xl place-self-center">
       <header class="flex flex-col place-items-center">
         <img alt="Avatar" class="rounded-[50%] w-40" src="/images/avatar.jpg" />
         <h1 class="green">Hi, I am Luigi Leuzzi</h1>
@@ -508,14 +508,19 @@ const tags = Array.from({ length: 50 }).map(
             <article v-for="(project, index) in projects">
 
               <Dialog>
-                <div class="flex">
+                <div class="block sm:flex">
+
+                  <div class="sm:hidden">
+                    <h3>{{ project.title }}</h3>
+                    <p class="pt-1 pb-3 text-sm text-muted-foreground">{{ project.summary }}</p>
+                  </div>
 
                   <DialogTrigger as-child>
-                    <img class="w-72 sm:w-96 object-scale-down cursor-pointer" :src=project.image
+                    <img class="w-full sm:w-96 object-scale-down cursor-pointer" :src=project.image
                       :alt=project.title></img>
                   </DialogTrigger>
 
-                  <div class="content-center pl-4">
+                  <div class="hidden sm:inline content-center pl-4">
                     <h3>{{ project.title }}</h3>
                     <p class="pt-1 text-sm text-muted-foreground">{{ project.summary }}</p>
                   </div>
