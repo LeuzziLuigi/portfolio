@@ -14,7 +14,14 @@ import { Separator } from '@/components/ui/separator'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 
-import { Github, Linkedin } from 'lucide-vue-next'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
+
+import { Github, Linkedin, Info } from 'lucide-vue-next'
 
 interface Skill {
   name: string;
@@ -92,7 +99,7 @@ enum Tag {
   VersionControl = "Version Control"
 }
 
-let skillFrameworks: Skill[] = [
+const sectionFrameworks: Skill[] = [
   {
     "name": "Angular",
     "tags": [Tag.Frontend],
@@ -145,7 +152,7 @@ let skillFrameworks: Skill[] = [
   }
 ];
 
-let skillLanguages: Skill[] = [
+const sectionLanguages: Skill[] = [
   {
     "name": "Javascript / Typescript",
     "tags": [Tag.Frontend, Tag.Backend],
@@ -213,7 +220,7 @@ let skillLanguages: Skill[] = [
   }
 ];
 
-let skillEnvironments: Skill[] = [
+const sectionEnvironments: Skill[] = [
   {
     "name": "VS Code",
     "tags": [Tag.IDE],
@@ -271,7 +278,7 @@ let skillEnvironments: Skill[] = [
   }
 ];
 
-let skillConcepts: Skill[] = [
+const sectionConcepts: Skill[] = [
   {
     "name": "Component-Based Architecture",
     "tags": [Tag.Architecture],
@@ -314,7 +321,7 @@ let skillConcepts: Skill[] = [
   }
 ];
 
-let skillDBMSs: Skill[] = [
+const sectionDBMSs: Skill[] = [
   {
     "name": "SQL Server Management Studio (SSMS)",
     "tags": [Tag.Data],
@@ -337,7 +344,7 @@ let skillDBMSs: Skill[] = [
   }
 ];
 
-let skillLibraries: Skill[] = [
+const sectionLibraries: Skill[] = [
   {
     "name": "Tailwind",
     "tags": [Tag.Frontend],
@@ -390,7 +397,7 @@ let skillLibraries: Skill[] = [
   }
 ];
 
-let skillTools: Skill[] = [
+const sectionTools: Skill[] = [
   {
     "name": "Git / Github",
     "tags": [Tag.Communication, Tag.Devops, Tag.VersionControl],
@@ -467,9 +474,37 @@ let skillTools: Skill[] = [
     "value": 50
   }
 ];
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`,
-)
+
+const skills = [
+  {
+    name: "Framework",
+    list: sectionFrameworks
+  },
+  {
+    name: "Languages",
+    list: sectionLanguages
+  },
+  {
+    name: "Libraries",
+    list: sectionLibraries
+  },
+  {
+    name: "Environments",
+    list: sectionEnvironments
+  },
+  {
+    name: "Database Management Systems",
+    list: sectionDBMSs
+  },
+  {
+    name: "Tools",
+    list: sectionTools
+  },
+  {
+    name: "Concepts",
+    list: sectionConcepts
+  },
+]
 </script>
 
 <template>
@@ -491,96 +526,103 @@ const tags = Array.from({ length: 50 }).map(
         </div>
       </header>
       <main>
-        <h2>About</h2>
-        <p>
-          From an early age, I excelled in competitive video games, paired with my curiosity for
-          technologies I naturally gravitated towards coding my own. What began as a hobby quickly
-          grew into a lasting passion for software development. This interest led me to study in the
-          United States, where I fell in love with the Software Development Life Cycle. As a Software
-          Engineer, I had the privilege of working alongside talented mentors, learning to design
-          large-scale systems and deliver production-ready applications. These experiences not only
-          deepened my technical expertise but also fueled my drive to keep growing and contributing to
-          impactful software solutions.
-        </p>
-        <h2>Projects</h2>
-        <div class="flex justify-center">
-          <div loop="true" class="relative w-full">
-            <article v-for="(project, index) in projects">
+        <div class="section">
+          <h2>About</h2>
+          <p>
+            From an early age, I excelled in competitive video games, paired with my curiosity for
+            technologies I naturally gravitated towards coding my own. What began as a hobby quickly
+            grew into a lasting passion for software development. This interest led me to study in the
+            United States, where I fell in love with the Software Development Life Cycle. As a Software
+            Engineer, I had the privilege of working alongside talented mentors, learning to design
+            large-scale systems and deliver production-ready applications. These experiences not only
+            deepened my technical expertise but also fueled my drive to keep growing and contributing to
+            impactful software solutions.
+          </p>
+        </div>
 
-              <Dialog>
-                <div class="block sm:flex">
+        <div class="section">
+          <h2>Projects</h2>
+          <div class="flex justify-center pt-2 pb-2">
+            <div class="relative w-full">
+              <article v-for="(project, index) in projects">
 
-                  <div class="sm:hidden">
-                    <h3>{{ project.title }}</h3>
-                    <p class="pt-1 pb-3 text-sm text-muted-foreground">{{ project.summary }}</p>
+                <Dialog>
+                  <div class="block sm:flex">
+
+                    <div class="sm:hidden">
+                      <h3>{{ project.title }}</h3>
+                      <p class="pt-1 pb-3 text-sm text-muted-foreground">{{ project.summary }}</p>
+                    </div>
+
+                    <DialogTrigger as-child>
+                      <img class="w-full sm:w-96 object-scale-down cursor-pointer" :src=project.image
+                        :alt=project.title></img>
+                    </DialogTrigger>
+
+                    <div class="hidden sm:inline content-center pl-4">
+                      <h3>{{ project.title }}</h3>
+                      <p class="pt-1 text-sm text-muted-foreground">{{ project.summary }}</p>
+                    </div>
                   </div>
 
-                  <DialogTrigger as-child>
-                    <img class="w-full sm:w-96 object-scale-down cursor-pointer" :src=project.image
-                      :alt=project.title></img>
-                  </DialogTrigger>
 
-                  <div class="hidden sm:inline content-center pl-4">
-                    <h3>{{ project.title }}</h3>
-                    <p class="pt-1 text-sm text-muted-foreground">{{ project.summary }}</p>
-                  </div>
-                </div>
+                  <DialogContent class="sm:max-w-[500px]">
+                    <DialogHeader class="gap-0">
+                      <DialogTitle>{{ project.title }}</DialogTitle>
+                      <DialogDescription>{{ project.meta }}</DialogDescription>
+                    </DialogHeader>
+                    {{ project.description }}
+                    <div class="grid gap-4 py-4">
+                      <img :src=project.image :alt=project.title></img>
 
-
-                <DialogContent class="sm:max-w-[500px]">
-                  <DialogHeader class="gap-0">
-                    <DialogTitle>{{ project.title }}</DialogTitle>
-                    <DialogDescription>{{ project.meta }}</DialogDescription>
-                  </DialogHeader>
-                  {{ project.description }}
-                  <div class="grid gap-4 py-4">
-                    <img :src=project.image :alt=project.title></img>
-
-                  </div>
-                </DialogContent>
-              </Dialog>
-              <Separator v-if="index < projects.length - 1" />
-            </article>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                <Separator v-if="index < projects.length - 1" />
+              </article>
+            </div>
           </div>
         </div>
 
-        <h2>Skills</h2>
-        <h3>Frameworks</h3>
-        <span class="pr-2" v-for="skill in skillFrameworks">
-          <Badge>{{ skill.name }}</Badge>
-        </span>
-        <Separator />
+        <div class="section">
+          <div class="flex ">
+            <h2>Skills</h2>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info class="h-4 w-4 mt-3 ml-1 text-muted-foreground hover:text-chart-2" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>All skills are sorted by proficiency</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
 
-
-        <h3>Languages</h3>
-        <span class="pr-2" v-for="skill in skillLanguages">
-          <Badge>{{ skill.name }}</Badge>
-        </span>
-        <Separator />
-
-        <h3>Libraries</h3>
-        <span class="pr-2" v-for="skill in skillLibraries">
-          <Badge>{{ skill.name }}</Badge>
-        </span>
-        <Separator />
-
-        <h3>Environments</h3>
-        <span class="pr-2" v-for="skill in skillEnvironments">
-          <Badge>{{ skill.name }}</Badge>
-        </span>
-        <Separator />
-
-        <h3>Database Managament Systems</h3>
-        <span class="pr-2" v-for="skill in skillDBMSs">
-          <Badge>{{ skill.name }}</Badge>
-        </span>
-        <Separator />
-
-        <h3>Concepts</h3>
-        <span class="pr-2" v-for="skill in skillConcepts">
-          <Badge>{{ skill.name }}</Badge>
-        </span>
+          <div v-for="(section, index) in skills">
+            <h3>{{ section.name }}</h3>
+            <span class="pr-2" v-for="skill in section.list">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Badge>{{ skill.name }}</Badge>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{{ skill.value }}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </span>
+            <Separator v-if="index < skills.length - 1" />
+          </div>
+        </div>
       </main>
     </div>
   </ScrollArea>
 </template>
+
+<style scoped>
+.section {
+  margin-top: 2rem;
+}
+</style>

@@ -1,11 +1,9 @@
 h1 {
   font-size: 2rem;
-  margin-top: 1.5rem;
 }
 
 h2 {
   font-size: 1.5rem;
-  margin-top: 1rem;
 }
 
 h3 {
@@ -14,7 +12,6 @@ h3 {
 
 h1,
 h2 {
-  margin-bottom: 0.5rem;
   line-height: 1.5rem;
   text-decoration: none;
   color: var(--chart-2);
