@@ -36,28 +36,32 @@ const projects = [
     image: "/images/apptor.png",
     title: "Apptor",
     summary: "Low code Web Application",
-    description: "From UI to Data management to Deployment, Apptor streamlines this process making it easier to develop applications. Components can easily be customized by dragging and dropping them onto the canvas. Everything is converted into JSON which will then be parsed by the framework",
+    description: "From UI to Data management to Deployment, Apptor streamlines this process making it easier to develop applications. Components can easily be customized by dragging and dropping them onto the canvas. Events can be created and catched to add customizible actions. Everything is converted into JSON which will then be parsed by the framework",
+    techs: 'Angular, Spring Boot, DBeaver, Azure',
     meta: 'Expeed, software engineer'
   },
   {
     image: "/images/zeigo.png",
     title: "Zeigo Activate",
     summary: "Reduce their environmental impact and lead global decarbonization.",
-    description: "I have developed countless features for Schneider. Here I learned to work in a large team with the classic fetures/bugs experience through Jira, paired with daily standup following the Agile methodology. For Zeigo Activate I was particulary adept in customizing Kendo UI, since it often didn't support some feature out of the box",
+    description: "I have developed countless features for Schneider. Here I learned to work in a large team with the classic fetures/bugs experience through Jira, paired with daily standup following the Agile methodology. I have also Architected a event-driven micro-frontend solution using Native Federation and a custom event bus - compared to the previous web-components approach, it loads libraries with matching version only once, decreasing loading times dramatically. For Zeigo Activate I was particulary involved in customizing Kendo UI, or implementing custom components when none of the existing ones provided the needed look or functionality.",
+    techs: 'Angular, .Net, SSMS, Azure',
     meta: 'Schneider - Expeed client, software engineer'
   },
   {
     image: "/images/unity-tools.jpg",
     title: "XR Ambisonics",
     summary: "Unity Tools to create music-reactive visualizations",
-    description: "Tools to generate various shapes that react to music. Visualizations can be viewed in augmented reality through your phone at specific locations in the world",
+    description: "Tools to generate various shapes that react to music. Visualizations can be viewed in augmented reality through your phone at specific locations in the world. I have developed QoL scripts and custom Unity Tools to streamline my customer's workflow. I have also guided him in deploying the app in the App Store.",
+    techs: 'Unity3D, XR, C#, Blender, App Store',
     meta: 'Viz Lab, developer'
   },
   {
     image: "/images/weekly-bucket.jpg",
     title: "Weekly Bucket",
     summary: "Weekly planner with intuitive user interface",
-    description: "Enter tasks and the desired amount of times for each week. Simply tap on a task to get closer to your goal. Track your history and modify tasks at any time",
+    description: "Enter or selected a suggested task and the desired amount you wish to reach each week. Simply tap on a task to get closer to your goal. Track your history and modify tasks at any time",
+    techs: "React Native, Javascript",
     meta: 'College Project, front-end'
   },
   {
@@ -65,6 +69,7 @@ const projects = [
     title: "Skeleton Rush",
     summary: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
     description: "A 2.5D shooter video game. 2.5D refers to games developed in a 3D environment but with movements constrained in 2 axis. You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken",
+    techs: "Unity3D, C#, Javascript, HTML, CSS, Bootstrap, SQL, PHP",
     meta: 'Personal Project, developer'
   },
   {
@@ -72,6 +77,7 @@ const projects = [
     title: "Fearless Run",
     summary: "A mobile arcade video game. Dodge enemies and get the highest score",
     description: "A simple 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities",
+    techs: "Unity3D, C#, Play Store",
     meta: 'Personal Project, developer'
   },
 ]
@@ -512,7 +518,7 @@ const skills = [
     <div class="p-4 pt-8 pb-10 max-w-lg sm:max-w-2xl place-self-center">
       <header class="flex flex-col place-items-center">
         <img alt="Avatar" class="rounded-[50%] w-40" src="/images/avatar.jpg" />
-        <h1 class="green mt-4">Hi, I am Luigi Leuzzi</h1>
+        <h1 class="green mt-4 mb-2">Hi, I am Luigi Leuzzi</h1>
         <h3>Full-stack Developer</h3>
         <span class="hidden sm:inline">clean and intuitive user interfaces | scalable and performant systems</span>
         <span class="sm:hidden">clean and intuitive UIs | scalable architectures</span>
@@ -529,19 +535,33 @@ const skills = [
         <div class="section">
           <h2>About</h2>
           <p>
-            From an early age, I excelled in competitive video games, paired with my curiosity for
-            technologies I naturally gravitated towards coding my own. What began as a hobby quickly
-            grew into a lasting passion for software development. This interest led me to study in the
-            United States, where I fell in love with the Software Development Life Cycle. As a Software
-            Engineer, I had the privilege of working alongside talented mentors, learning to design
-            large-scale systems and deliver production-ready applications. These experiences not only
-            deepened my technical expertise but also fueled my drive to keep growing and contributing to
-            impactful software solutions.
+            I always loved videogames, paired with my growing curiosity for technologies I naturally gravitated towards
+            developing my own.
+            This led me to find my passion for coding early on and when I was presented with the opportunity to study
+            Software Engineering in the United States I took it.
+            There I fell in love with the Software Development Life Cycle as well as refining soft-skills greatly
+            thanks to a part-time job I had at the campus tech center.
+            After graduation, as a Software Engineer, I had the privilege of working alongside talented mentors,
+            learning to design large-scale systems and deliver production-ready applications.
+            These experiences not only deepened my technical expertise but also fueled my drive to keep growing and
+            contributing to impactful software solutions.
           </p>
         </div>
 
         <div class="section">
-          <h2>Projects</h2>
+          <div class="flex">
+            <h2>Projects</h2>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info class="h-4 w-4 ml-1 text-muted-foreground hover:text-chart-2" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Click on a Project for more information</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
           <div class="flex justify-center pt-2 pb-2">
             <div class="relative w-full">
               <article v-for="(project, index) in projects">
@@ -572,6 +592,7 @@ const skills = [
                       <DialogDescription>{{ project.meta }}</DialogDescription>
                     </DialogHeader>
                     {{ project.description }}
+                    <p>Techs: {{ project.techs }}</p>
                     <div class="grid gap-4 py-4">
                       <img :src=project.image :alt=project.title></img>
 
@@ -585,12 +606,12 @@ const skills = [
         </div>
 
         <div class="section">
-          <div class="flex ">
+          <div class="flex">
             <h2>Skills</h2>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Info class="h-4 w-4 mt-3 ml-1 text-muted-foreground hover:text-chart-2" />
+                  <Info class="h-4 w-4 ml-1 text-muted-foreground hover:text-chart-2" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>All skills are sorted by proficiency</p>
