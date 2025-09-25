@@ -17,3 +17,7 @@ h2 {
   color: var(--chart-2);
   transition: 0.4s;
 }
+
+html{
+  overflow-y: hidden;
+}

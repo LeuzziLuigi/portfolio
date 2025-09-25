@@ -16,41 +16,35 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-import { Github, Linkedin, Info } from 'lucide-vue-next'
+import { Info } from 'lucide-vue-next'
 
 // Data imports
 import { personalInfo, aboutText } from '@/data/personal'
 import { projects } from '@/data/projects'
 import { skills } from '@/data/skills'
 
+import AppSidebar from '@/components/AppSidebar.vue'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+
+
 // Initialize dark mode
 document.documentElement.classList.add('dark')
 </script>
 
 <template>
-  <ScrollArea class="h-screen w-screen rounded-md flex center">
-    <div class="p-4 pt-8 pb-10 max-w-lg sm:max-w-2xl place-self-center">
-
-      <!-- Header Section -->
-      <header class="flex flex-col place-items-center">
-        <img :alt="`${personalInfo.name} Avatar`" class="rounded-[50%] w-40" :src="personalInfo.avatar" />
-        <h1 class="mt-4 mb-2">Hi, I am {{ personalInfo.name }}</h1>
-        <h3>{{ personalInfo.title }}</h3>
-
-        <span class="hidden sm:inline">{{ personalInfo.tagline.desktop }}</span>
-        <span class="sm:hidden">{{ personalInfo.tagline.mobile }}</span>
-
-        <div class="flex gap-4 mt-2 pl-1.5">
-          <a :href="personalInfo.github" target="_blank" rel="noopener noreferrer">
-            <Github class="h-6 w-6 text-muted-foreground hover:text-chart-2" />
-          </a>
-          <a :href="personalInfo.linkedin" target="_blank" rel="noopener noreferrer">
-            <Linkedin class="h-6 w-6 text-muted-foreground hover:text-chart-2" />
-          </a>
-        </div>
+  <!-- Header Section -->
+  <SidebarProvider style="--sidebar-width: 20rem; --sidebar-width-mobile: 20rem;">
+    <AppSidebar />
+    <!-- Main Section -->
+    <ScrollArea class="h-screen w-screen flex center">
+      <header class="sticky top-0 bg-background p-2 z-1 md:hidden">
+        <SidebarTrigger />
+        <span class="float-right">{{ personalInfo.name }} portfolio</span>
       </header>
-
-      <main>
+      <div class="h-40 sm:h-60 md:h-80">
+        <img src="./assets/banner.jpg" class="object-cover w-full h-full">
+      </div>
+      <main class="p-5">
         <!-- About Section -->
         <section class="section">
           <h2>About</h2>
@@ -155,12 +149,34 @@ document.documentElement.classList.add('dark')
           </div>
         </section>
       </main>
-    </div>
-  </ScrollArea>
+
+    </ScrollArea>
+  </SidebarProvider>
 </template>
 
 <style scoped>
 .section {
-  margin-top: 2rem;
+  padding: 2em 0 1em 0;
+}
+
+main {
+  margin: 0 auto;
+  max-width: calc(100% - 4em);
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding: 3em 0 1em 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 4em 0 2em 0;
+  }
+
+  main {
+    max-width: calc(800px);
+  }
 }
 </style>
