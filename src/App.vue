@@ -29,14 +29,65 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 
 // Initialize dark mode
 document.documentElement.classList.add('dark')
+
+
+import { ref, onMounted, onUnmounted } from 'vue'
+
+
+const scrollToSection = (sectionId: string) => {
+  console.log(sectionId)
+  sectionId = sectionId.toLowerCase();
+  const element = document.getElementById(sectionId)
+
+  if (!element) return
+
+  element.scrollIntoView({ behavior: "smooth" });
+}
+
+const activeSection = ref('about')
+const scrollRoot = ref<HTMLElement>()
+
+
+const options = {
+  rootMargin: "0px",
+  scrollMargin: "-200px",
+};
+
+function onAboutIntersection([e]: any) {
+  if (e.isIntersecting) activeSection.value = "about";
+  else activeSection.value = "projects";
+}
+
+function onSkillsIntersection([e]: any) {
+  if (e.isIntersecting) activeSection.value = "skills";
+  else activeSection.value = "projects";
+}
+
+const aboutObserver = new IntersectionObserver(onAboutIntersection, options);
+const skillsObserver = new IntersectionObserver(onSkillsIntersection, options);
+
+onMounted(() => {
+  const aboutRef = document.getElementById("about")!;
+  aboutObserver.observe(aboutRef);
+
+  const skillsRef = document.getElementById("skills")!;
+  skillsObserver.observe(skillsRef);
+});
+
+onUnmounted(() => {
+  aboutObserver.disconnect();
+  skillsObserver.disconnect();
+});
+
+
 </script>
 
 <template>
   <!-- Header Section -->
   <SidebarProvider style="--sidebar-width: 20rem; --sidebar-width-mobile: 20rem;">
-    <AppSidebar />
+    <AppSidebar :active-section="activeSection" @section-selected="scrollToSection" />
     <!-- Main Section -->
-    <ScrollArea class="h-screen w-screen flex center">
+    <ScrollArea class="h-screen w-screen flex center" id="scrollArea">
       <header class="sticky top-0 bg-background p-2 z-1 md:hidden">
         <SidebarTrigger />
         <span class="float-right">{{ personalInfo.name }} portfolio</span>
@@ -44,21 +95,22 @@ document.documentElement.classList.add('dark')
       <div class="h-40 sm:h-60 md:h-80">
         <img src="./assets/banner.jpg" class="object-cover w-full h-full">
       </div>
-      <main class="p-5">
+      <main>
         <!-- About Section -->
-        <section class="section">
-          <h2>About</h2>
+        <section id="about" class="section !pt-10important">
+          <h1 class="mb-4 text-5xl">
+            About</h1>
           <p>{{ aboutText }}</p>
         </section>
-
+        <Separator class="section-separator" />
         <!-- Projects Section -->
-        <section class="section">
+        <section id="projects" class="section">
           <div class="flex">
-            <h2>Projects</h2>
+            <h1 class="mb-4">Projects</h1>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Info class="h-4 w-4 ml-1 text-muted-foreground hover:text-chart-2" />
+                  <Info class="h-4 w-4 ml-2 mb-3 text-muted-foreground hover:text-chart-2" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Click on a Project for more information</p>
@@ -82,12 +134,12 @@ document.documentElement.classList.add('dark')
 
                     <!-- Project image -->
                     <DialogTrigger as-child>
-                      <img class="w-full sm:w-96 object-scale-down cursor-pointer" :src="project.image"
+                      <img class="sm:w-[50%] object-scale-down cursor-pointer" :src="project.image"
                         :alt="project.title" />
                     </DialogTrigger>
 
                     <!-- Desktop title -->
-                    <div class="hidden sm:inline content-center pl-4">
+                    <div class="hidden sm:inline sm:w-[50%] content-center pl-4">
                       <h3>{{ project.title }}</h3>
                       <p class="pt-1 text-sm text-muted-foreground">
                         {{ project.summary }}
@@ -114,15 +166,15 @@ document.documentElement.classList.add('dark')
             </div>
           </div>
         </section>
-
+        <Separator class="section-separator" />
         <!-- Skills Section -->
-        <section class="section">
+        <section id="skills" class="section">
           <div class="flex">
-            <h2>Skills</h2>
+            <h1 class="mb-4">Skills</h1>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Info class="h-4 w-4 ml-1 text-muted-foreground hover:text-chart-2" />
+                  <Info class="h-4 w-4 ml-2 mb-3 text-muted-foreground hover:text-chart-2" />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>All skills are sorted by proficiency</p>
@@ -156,27 +208,34 @@ document.documentElement.classList.add('dark')
 
 <style scoped>
 .section {
-  padding: 2em 0 1em 0;
-}
+  padding: 1em 0;
 
-main {
   margin: 0 auto;
   max-width: calc(100% - 4em);
 }
 
+.section-separator {
+  height: 5px;
+  width: 100%;
+}
+
 @media (min-width: 640px) {
   .section {
-    padding: 3em 0 1em 0;
+    padding: 2em 0;
   }
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: 4em 0 2em 0;
-  }
+    padding: 3em 0;
 
-  main {
-    max-width: calc(800px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    width: calc(100% - 8em);
+    max-width: 1000px;
   }
 }
 </style>
