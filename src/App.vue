@@ -17,6 +17,7 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { Info } from 'lucide-vue-next'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 // Data imports
 import { personalInfo, aboutText } from '@/data/personal'
@@ -30,10 +31,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 // Initialize dark mode
 document.documentElement.classList.add('dark')
 
-
-import { ref, onMounted, onUnmounted } from 'vue'
-
-
+// Handle active section (click)
 const scrollToSection = (sectionId: string) => {
   console.log(sectionId)
   sectionId = sectionId.toLowerCase();
@@ -44,9 +42,8 @@ const scrollToSection = (sectionId: string) => {
   element.scrollIntoView({ behavior: "smooth" });
 }
 
+// Handle active section (scroll)
 const activeSection = ref('about')
-const scrollRoot = ref<HTMLElement>()
-
 
 const options = {
   rootMargin: "0px",
@@ -79,25 +76,24 @@ onUnmounted(() => {
   skillsObserver.disconnect();
 });
 
-
 </script>
 
 <template>
   <!-- Header Section -->
-  <SidebarProvider style="--sidebar-width: 20rem; --sidebar-width-mobile: 20rem;">
+  <SidebarProvider>
     <AppSidebar :active-section="activeSection" @section-selected="scrollToSection" />
     <!-- Main Section -->
-    <ScrollArea class="h-screen w-screen flex center" id="scrollArea">
+    <ScrollArea class="h-screen w-screen flex center">
       <header class="sticky top-0 bg-background p-2 z-1 md:hidden">
         <SidebarTrigger />
         <span class="float-right">{{ personalInfo.name }} portfolio</span>
       </header>
-      <div class="h-40 sm:h-60 md:h-80">
+      <div class="h-40 sm:h-60 md:h-70 lg:h-80">
         <img src="./assets/banner.jpg" class="object-cover w-full h-full">
       </div>
-      <main>
+      <main class="pt-5">
         <!-- About Section -->
-        <section id="about" class="section !pt-10important">
+        <section id="about" class="section">
           <h1 class="mb-4 text-5xl">
             About</h1>
           <p>{{ aboutText }}</p>
@@ -209,7 +205,6 @@ onUnmounted(() => {
 <style scoped>
 .section {
   padding: 1em 0;
-
   margin: 0 auto;
   max-width: calc(100% - 4em);
 }
@@ -228,7 +223,6 @@ onUnmounted(() => {
 @media (min-width: 768px) {
   .section {
     padding: 3em 0;
-
   }
 }
 
