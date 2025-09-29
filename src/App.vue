@@ -1,12 +1,4 @@
 <script setup lang="ts">
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from "@/components/ui/dialog"
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -76,6 +68,25 @@ onUnmounted(() => {
   skillsObserver.disconnect();
 });
 
+
+import { cn } from "@/lib/utils";
+import { computed } from "vue";
+
+interface FlipCardProps {
+  rotate?: "x" | "y";
+  class?: string;
+}
+
+const props = withDefaults(defineProps<FlipCardProps>(), {
+  rotate: "y",
+});
+const rotationClass = {
+  x: ["group-hover:[transform:rotateX(180deg)]", "[transform:rotateX(180deg)]"],
+  y: ["group-hover:[transform:rotateY(180deg)]", "[transform:rotateY(180deg)]"],
+};
+
+const rotation = computed(() => rotationClass[props.rotate]);
+
 </script>
 
 <template>
@@ -118,44 +129,58 @@ onUnmounted(() => {
           <div class="flex justify-center pt-2 pb-2">
             <div class="relative w-full">
               <article v-for="(project, index) in projects" :key="project.title">
-                <Dialog>
-                  <div class="block sm:flex">
-                    <!-- Mobile title -->
-                    <div class="sm:hidden">
-                      <h3>{{ project.title }}</h3>
-                      <p class="pt-1 pb-3 text-sm text-muted-foreground">
-                        {{ project.summary }}
-                      </p>
-                    </div>
+                <div class="block sm:flex">
+                  <!-- Mobile title -->
+                  <div class="sm:hidden">
+                    <h3>{{ project.title }}</h3>
+                    <p class="pt-1 pb-3 text-sm text-muted-foreground">
+                      {{ project.summary }}
+                    </p>
+                  </div>
+                  <!-- Project image -->
+                  <!-- <img class="sm:w-[50%] object-scale-down" :src="project.image" :alt="project.title" /> -->
 
-                    <!-- Project image -->
-                    <DialogTrigger as-child>
-                      <img class="sm:w-[50%] object-scale-down cursor-pointer" :src="project.image"
-                        :alt="project.title" />
-                    </DialogTrigger>
+                  <div :class="cn('group w-56 [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;"
+                    class="sm:w-[50%]">
+                    <div :class="cn(
+                      'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
+                      rotation[0],
+                    )
+                      ">
+                      <!-- Front -->
+                      <div class="absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]">
+                        <img class="w-full h-full " :src="project.image" :alt="project.title" />
+                      </div>
 
-                    <!-- Desktop title -->
-                    <div class="hidden sm:inline sm:w-[50%] content-center pl-4">
-                      <h3>{{ project.title }}</h3>
-                      <p class="pt-1 text-sm text-muted-foreground">
-                        {{ project.summary }}
-                      </p>
+                      <!-- Back -->
+                      <div :class="cn(
+                        'absolute w-full h-full flex justify-between flex-col overflow-hidden rounded-2xl border bg-card text-sm p-4 text-slate-200 [backface-visibility:hidden]',
+                        rotation[1],
+                      )
+                        ">
+                        <div>
+                          {{ project.description }}
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                          <span v-for="tech in project.techs" :key="project.title" class="pr-2">
+                            <Badge>{{ tech }}</Badge>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <!-- Project dialog -->
-                  <DialogContent class="sm:max-w-[500px]">
-                    <DialogHeader class="gap-0">
-                      <DialogTitle>{{ project.title }}</DialogTitle>
-                      <DialogDescription>{{ project.meta }}</DialogDescription>
-                    </DialogHeader>
-                    <p>{{ project.description }}</p>
-                    <p><strong>Techs:</strong> {{ project.techs }}</p>
-                    <div class="grid gap-4 py-4">
-                      <img :src="project.image" :alt="project.title" />
-                    </div>
-                  </DialogContent>
-                </Dialog>
+
+                  <!-- Desktop title -->
+                  <div class="hidden sm:inline sm:w-[50%] content-center pl-4">
+                    <h3>{{ project.title }}</h3>
+                    <p class="pt-1 text-sm text-muted-foreground">
+                      {{ project.summary }}
+                    </p>
+                  </div>
+                </div>
+
+
 
                 <Separator v-if="index < projects.length - 1" />
               </article>

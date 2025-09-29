@@ -3,7 +3,7 @@ export interface Project {
     title: string
     summary: string
     description: string
-    techs: string
+    techs: string[]
     meta: string
 }
 
