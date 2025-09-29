@@ -52,12 +52,12 @@ const options = {
 
 function onAboutIntersection([e]: any) {
   if (e.isIntersecting) activeSection.value = "about";
-  else activeSection.value = "projects";
+  else if (activeSection.value == 'about') activeSection.value = "projects";
 }
 
 function onSkillsIntersection([e]: any) {
   if (e.isIntersecting) activeSection.value = "skills";
-  else activeSection.value = "projects";
+  else if (activeSection.value == 'skills') activeSection.value = "projects";
 }
 
 const aboutObserver = new IntersectionObserver(onAboutIntersection, options);
