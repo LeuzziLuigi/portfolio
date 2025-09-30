@@ -21,7 +21,7 @@ export const projects: Project[] = [
         image: "/images/unity-tools.jpg",
         title: "XR Ambisonics",
         summary: "Unity Tools to create music-reactive visualizations",
-        description: "Tools to generate various shapes that react to music. Visualizations can be viewed in augmented reality through your phone at specific locations in the world. I have developed QoL scripts and custom Unity Tools to streamline my customer's workflow. I have also guided him in deploying the app in the App Store.",
+        description: "Tools to generate various shapes that react to music. Visualizations can be viewed in Virtual Reality and through the mobile app there are guided experiences that allow you to see visualizations in augmented reality with your camera at specific locations in the world. I have developed Quality of Life scripts and custom Unity Tools to streamline my customer's workflow. I have also guided him in deploying the app in the App Store.",
         techs: ["Unity3D", "XR", "C#", "Blender", "App Store"],
         meta: "Viz Lab, developer"
     },

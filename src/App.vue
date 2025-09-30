@@ -8,7 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-import { Info } from 'lucide-vue-next'
+import { Info, Scroll } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 // Data imports
@@ -153,20 +153,20 @@ const rotation = computed(() => rotationClass[props.rotate]);
                       </div>
 
                       <!-- Back -->
-                      <div :class="cn(
-                        'absolute w-full h-full flex justify-between flex-col overflow-hidden rounded-2xl border bg-card text-sm p-4 text-slate-200 [backface-visibility:hidden]',
+                      <ScrollArea :class="cn(
+                        'absolute w-full h-full  rounded-2xl border bg-card text-sm text-slate-200 [backface-visibility:hidden]',
                         rotation[1],
                       )
                         ">
-                        <div>
+                        <p class="p-2 sm:px-4">
                           {{ project.description }}
-                        </div>
-                        <div class="flex flex-wrap gap-2">
+                        </p>
+                        <div class="flex flex-wrap gap-2 p-2 sm:px-4">
                           <span v-for="tech in project.techs" :key="project.title" class="pr-2">
                             <Badge>{{ tech }}</Badge>
                           </span>
                         </div>
-                      </div>
+                      </ScrollArea>
                     </div>
                   </div>
 
@@ -231,7 +231,7 @@ const rotation = computed(() => rotationClass[props.rotate]);
 .section {
   padding: 1em 0;
   margin: 0 auto;
-  max-width: calc(100% - 4em);
+  max-width: calc(100% - 2em);
 }
 
 .section-separator {
