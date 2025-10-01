@@ -129,7 +129,7 @@ const rotation = computed(() => rotationClass[props.rotate]);
           <div class="flex justify-center pt-2 pb-2">
             <div class="relative w-full">
               <article v-for="(project, index) in projects" :key="project.title">
-                <div class="block sm:flex">
+                <div class="block sm:flex" :id="project.id">
                   <!-- Mobile title -->
                   <div class="sm:hidden">
                     <h3>{{ project.title }}</h3>

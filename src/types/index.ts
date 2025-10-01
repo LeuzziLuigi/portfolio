@@ -5,6 +5,7 @@ export interface Project {
     description: string
     techs: string[]
     meta: string
+    id: string
 }
 
 export interface Skill {
