@@ -107,7 +107,7 @@ const rotation = computed(() => rotationClass[props.rotate]);
         <section id="about" class="section">
           <h1 class="mb-4 text-5xl">
             About</h1>
-          <p>{{ aboutText }}</p>
+          <p class="text-justify">{{ aboutText }}</p>
         </section>
         <Separator class="section-separator" />
         <!-- Projects Section -->
@@ -140,7 +140,7 @@ const rotation = computed(() => rotationClass[props.rotate]);
                   <!-- Project image -->
                   <!-- <img class="sm:w-[50%] object-scale-down" :src="project.image" :alt="project.title" /> -->
 
-                  <div :class="cn('group w-56 [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;"
+                  <div :class="cn('group [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;"
                     class="sm:w-[50%]">
                     <div :class="cn(
                       'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
@@ -229,7 +229,7 @@ const rotation = computed(() => rotationClass[props.rotate]);
 
 <style scoped>
 .section {
-  padding: 1em 0;
+  padding: 3em 0.5em;
   margin: 0 auto;
   max-width: calc(100% - 2em);
 }
@@ -241,13 +241,13 @@ const rotation = computed(() => rotationClass[props.rotate]);
 
 @media (min-width: 640px) {
   .section {
-    padding: 2em 0;
+    padding: 3em 1em;
   }
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: 3em 0;
+    padding: 4em 2em;
   }
 }
 
