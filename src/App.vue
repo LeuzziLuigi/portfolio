@@ -18,6 +18,7 @@ import { skills } from '@/data/skills'
 
 import AppSidebar from '@/components/AppSidebar.vue'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { SquareArrowOutUpRight } from 'lucide-vue-next'
 
 
 // Initialize dark mode
@@ -132,14 +133,16 @@ const rotation = computed(() => rotationClass[props.rotate]);
                 <div class="block sm:flex" :id="project.id">
                   <!-- Mobile title -->
                   <div class="sm:hidden">
-                    <h3>{{ project.title }}</h3>
+                    <div class="flex">
+                      <h3>{{ project.title }}</h3>
+                      <a v-if="project.link" :href="project.link" target="_blank">
+                        <SquareArrowOutUpRight class="w-3 ml-2 text-muted-foreground hover:text-chart-2" />
+                      </a>
+                    </div>
                     <p class="pt-1 pb-3 text-sm text-muted-foreground">
                       {{ project.summary }}
                     </p>
                   </div>
-                  <!-- Project image -->
-                  <!-- <img class="sm:w-[50%] object-scale-down" :src="project.image" :alt="project.title" /> -->
-
                   <div :class="cn('group [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;"
                     class="sm:w-[50%]">
                     <div :class="cn(
@@ -173,7 +176,13 @@ const rotation = computed(() => rotationClass[props.rotate]);
 
                   <!-- Desktop title -->
                   <div class="hidden sm:inline sm:w-[50%] content-center pl-4">
-                    <h3>{{ project.title }}</h3>
+                    <span class="flex">
+                      <h3>{{ project.title }}</h3>
+
+                      <a v-if="project.link" :href="project.link" target="_blank">
+                        <SquareArrowOutUpRight class="w-3 ml-2 text-muted-foreground hover:text-chart-2" />
+                      </a>
+                    </span>
                     <p class="pt-1 text-sm text-muted-foreground">
                       {{ project.summary }}
                     </p>

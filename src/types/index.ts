@@ -6,6 +6,7 @@ export interface Project {
     techs: string[]
     meta: string
     id: string
+    link?: string
 }
 
 export interface Skill {
