@@ -108,92 +108,59 @@ const rotation = computed(() => rotationClass[props.rotate]);
         <section id="about" class="section">
           <h1 class="mb-4 text-5xl">
             About</h1>
-          <p class="text-justify">{{ aboutText }}</p>
+          <p class="text-justify mb-3">{{ aboutText[0] }}</p>
+          <p class="text-justify mb-3">{{ aboutText[1] }}</p>
+          <p class="text-justify">{{ aboutText[2] }}</p>
         </section>
         <Separator class="section-separator" />
         <!-- Projects Section -->
         <section id="projects" class="section">
           <div class="flex">
             <h1 class="mb-4">Projects</h1>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Info class="h-4 w-4 ml-2 mb-3 text-muted-foreground hover:text-chart-2" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Click on a Project for more information</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
           </div>
 
-          <div class="flex justify-center pt-2 pb-2">
-            <div class="relative w-full">
-              <article v-for="(project, index) in projects" :key="project.title">
-                <div class="block sm:flex" :id="project.id">
-                  <!-- Mobile title -->
-                  <div class="sm:hidden">
-                    <div class="flex">
-                      <h3>{{ project.title }}</h3>
-                      <a v-if="project.link" :href="project.link" target="_blank">
-                        <SquareArrowOutUpRight class="w-3 ml-2 text-muted-foreground hover:text-chart-2" />
-                      </a>
-                    </div>
-                    <p class="pt-1 pb-3 text-sm text-muted-foreground">
-                      {{ project.summary }}
-                    </p>
-                  </div>
-                  <div :class="cn('group [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;"
-                    class="sm:w-[50%]">
-                    <div :class="cn(
-                      'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
-                      rotation[0],
-                    )
-                      ">
-                      <!-- Front -->
-                      <div class="absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]">
-                        <img class="w-full h-full " :src="project.image" :alt="project.title" />
-                      </div>
-
-                      <!-- Back -->
-                      <ScrollArea :class="cn(
-                        'absolute w-full h-full  rounded-2xl border bg-card text-sm text-slate-200 [backface-visibility:hidden]',
-                        rotation[1],
-                      )
-                        ">
-                        <p class="p-2 sm:px-4">
-                          {{ project.description }}
-                        </p>
-                        <div class="flex flex-wrap gap-2 p-2 sm:px-4">
-                          <span v-for="tech in project.techs" :key="project.title" class="pr-2">
-                            <Badge>{{ tech }}</Badge>
-                          </span>
-                        </div>
-                      </ScrollArea>
-                    </div>
-                  </div>
-
-
-                  <!-- Desktop title -->
-                  <div class="hidden sm:inline sm:w-[50%] content-center pl-4">
-                    <span class="flex">
-                      <h3>{{ project.title }}</h3>
-
-                      <a v-if="project.link" :href="project.link" target="_blank">
-                        <SquareArrowOutUpRight class="w-3 ml-2 text-muted-foreground hover:text-chart-2" />
-                      </a>
-                    </span>
-                    <p class="pt-1 text-sm text-muted-foreground">
-                      {{ project.summary }}
-                    </p>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-center pt-2 pb-2">
+            <article v-for="project in projects" :key="project.title"
+              class="border text-center rounded-[20px] bg-sidebar">
+              <div class="flex flex-col h-full justify-between ">
+                <div>
+                  <div class="flex justify-center p-2">
+                    <h3>{{ project.title }}</h3>
+                    <a v-if="project.link" :href="project.link" target="_blank" class="self-center">
+                      <SquareArrowOutUpRight class="w-4 ml-2 text-muted-foreground hover:text-chart-2" />
+                    </a>
                   </div>
                 </div>
+                <div :class="cn('group [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;">
+                  <div :class="cn(
+                    'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
+                    rotation[0],
+                  )
+                    ">
+                    <!-- Front -->
+                    <div class="absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]">
+                      <img class="w-full h-full " :src="project.image" :alt="project.title" />
+                    </div>
 
-
-
-                <Separator v-if="index < projects.length - 1" />
-              </article>
-            </div>
+                    <!-- Back -->
+                    <ScrollArea :class="cn(
+                      'absolute w-full h-full  rounded-2xl border bg-card text-sm text-slate-200 [backface-visibility:hidden]',
+                      rotation[1],
+                    )
+                      ">
+                      <p class="p-2 sm:px-4">
+                        {{ project.description }}
+                      </p>
+                      <div class="flex flex-wrap gap-2 p-2 sm:px-4">
+                        <span v-for="tech in project.techs" :key="project.title" class="pr-2">
+                          <Badge>{{ tech }}</Badge>
+                        </span>
+                      </div>
+                    </ScrollArea>
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
         <Separator class="section-separator" />
@@ -262,8 +229,8 @@ const rotation = computed(() => rotationClass[props.rotate]);
 
 @media (min-width: 1024px) {
   .section {
-    width: calc(100% - 8em);
-    max-width: 1000px;
+    width: calc(100% - 4em);
+    max-width: 1300px;
   }
 }
 </style>

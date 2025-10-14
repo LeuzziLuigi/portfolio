@@ -41,7 +41,7 @@ export const projects: Project[] = [
         image: "/images/traffic-object-recognition.png",
         title: "Traffic Object Recognition",
         summary: "Machine learning models for vehicle detection, classification, and road condition analysis.",
-        description: "Traffic Object Recognition is a full-stack application that interfaces with machine learning model to enable vehicle counting, classification, and road condition analysis. There are also tools with insutrctions provided to further train the models. ",
+        description: "Collaborated with real stakeholders to train models for tracking vehicles. It is possible to count and classify vehicles. It is also possible to detect the conditions of the road such as clear, snow, and rain. A Full-Stack Application was made to access the tools and settings more easily. A different app was also provided to enable customers to further train models",
         techs: ["Machine Learning", "Python", "Tensorflow", "Node.js", "Express.js", "JavaScript"],
         meta: "Research Project, Full-Stack Developer",
         id: "traffic-object-recognition",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
         link: "https://github.com/LeuzziLuigi/MealApp"
     },
     {
-        image: "/images/nfc-medical.jpg",
+        image: "/images/nfc-medical.png",
         title: "NFC Medical",
         summary: "An Android app integrating NFC for medical data access or patient identification",
         description: "Designed and developed a mobile application which interfaces with a unique-per-person NFC tag, which allows first-responders such as EMTs to quickly access a patient’s relevant medical information to provide the best emergency care",
