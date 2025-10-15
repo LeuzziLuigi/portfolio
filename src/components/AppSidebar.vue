@@ -27,7 +27,7 @@ import { Github, Linkedin } from 'lucide-vue-next'
     <SidebarContent>
       <div v-for="section in sections" class="m-1">
         <button @click="$emit('sectionSelected', section.id)" class="w-full p-2 cursor-pointer"
-          :class="activeSection === section.id ? 'bg-background' : ''">
+          :class="activeSection === section.id ? 'bg-background text-chart-2' : ' hover:text-chart-2'">
           {{ section.displayText }}
         </button>
       </div>

@@ -89,7 +89,7 @@ onUnmounted(() => {
       <main class="pt-5">
         <!-- About Section -->
         <section :id="sections[0].id" class="section">
-          <h1 class="mb-4 text-5xl">{{ sections[0].displayText }}</h1>
+          <h1 class="mb-6 text-5xl">{{ sections[0].displayText }}</h1>
           <p class="text-justify mb-3">{{ aboutText[0] }}</p>
           <p class="text-justify mb-3">{{ aboutText[1] }}</p>
           <p class="text-justify">{{ aboutText[2] }}</p>
@@ -98,7 +98,7 @@ onUnmounted(() => {
         <!-- Professional Projects Section -->
         <section :id="sections[1].id" class="section">
           <div class="flex">
-            <h1 class="mb-4">{{ sections[1].displayText }}</h1>
+            <h1 class="mb-6">{{ sections[1].displayText }}</h1>
           </div>
 
           <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-center pt-2 pb-2">
@@ -110,7 +110,7 @@ onUnmounted(() => {
         <!-- Personal Projects Section -->
         <section :id="sections[2].id" class="section">
           <div class="flex">
-            <h1 class="mb-4">{{ sections[2].displayText }}</h1>
+            <h1 class="mb-6">{{ sections[2].displayText }}</h1>
           </div>
 
           <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-center pt-2 pb-2">
@@ -122,7 +122,7 @@ onUnmounted(() => {
         <!-- Skills Section -->
         <section :id="sections[3].id" class="section">
           <div class="flex">
-            <h1 class="mb-4">{{ sections[3].displayText }}</h1>
+            <h1 class="mb-6">{{ sections[3].displayText }}</h1>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
@@ -155,11 +155,14 @@ onUnmounted(() => {
         <Separator class="section-separator" />
         <!-- Contact Section -->
         <section :id="sections[4].id" class="section">
-          <h1 class="mb-4">{{ sections[4].displayText }}</h1>
-          <p>email</p>
-          <p>phone</p>
-          <p>linkedin</p>
-          <p>github</p>
+          <h1 class="mb-6">{{ sections[4].displayText }}</h1>
+          <div class="flex flex-col gap-2">
+            <p>Email: leuzzi.luigi98@gmail.com</p>
+            <p>Phone: +39 351 346 6298</p>
+            <p>Linkedin: <a href="https://www.linkedin.com/in/luigileuzzi/"
+                target="_blank">https://www.linkedin.com/in/luigileuzzi/</a></p>
+            <p>Github: <a href="https://github.com/LeuzziLuigi" target="_blank">https://github.com/LeuzziLuigi</a></p>
+          </div>
         </section>
       </main>
 
