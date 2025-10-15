@@ -54,3 +54,8 @@ export enum Tag {
     ProjectManagement = "Project Management",
     VersionControl = "Version Control"
 }
+
+export interface Section {
+    displayText: string,
+    id: string
+}

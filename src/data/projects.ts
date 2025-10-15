@@ -1,6 +1,6 @@
 import type { Project } from "@/types"
 
-export const projects: Project[] = [
+export const professionalProjects: Project[] = [
     {
         image: "/images/apptor.png",
         title: "Apptor",
@@ -14,7 +14,7 @@ export const projects: Project[] = [
         image: "/images/unity-tools.jpg",
         title: "XR Ambisonics",
         summary: "Unity Tools to create music-reactive visualizations",
-        description: "Tools to generate various shapes that react to music. Visualizations can be viewed in Virtual Reality and through the mobile app there are guided experiences that allow you to see visualizations in augmented reality with your camera at specific locations in the world. I have developed Quality of Life scripts and custom Unity Tools to streamline my customer's workflow. I have also guided him in deploying the app in the App Store.",
+        description: "I developed Unity tools to streamline my customer workflow of generating various shapes that react to music. Visualizations can be viewed in Virtual Reality or through the mobile app, where there are guided experiences that allow users to see visualizations in augmented reality with the phone camera at specific locations in the world.",
         techs: ["Unity3D", "XR", "C#", "Blender", "App Store"],
         meta: "Viz Lab, developer",
         id: "xrAmbisonics"
@@ -36,7 +36,9 @@ export const projects: Project[] = [
         techs: ["Angular", ".Net", "SSMS", "Azure"],
         meta: "Schneider - Expeed client, software engineer",
         id: "zeigoActivate"
-    },
+    }
+];
+export const personalProjects: Project[] = [
     {
         image: "/images/traffic-object-recognition.png",
         title: "Traffic Object Recognition",
@@ -51,7 +53,7 @@ export const projects: Project[] = [
         image: "/images/weekly-bucket.jpg",
         title: "Weekly Bucket",
         summary: "Weekly planner with intuitive user interface",
-        description: "Enter or selected a suggested task and the desired amount you wish to reach each week. Simply tap on a task to get closer to your goal. Track your history and modify tasks at any time.",
+        description: "Weekly Bucket allows to enter or select tasks paired with the number of times planned to achieve weekly. Completly a tasked is as simple as clicking on it. Track your history and modify tasks at any time.",
         techs: ["React Native", "Javascript"],
         meta: "College Project, front-end",
         id: "weeklyBucket",
@@ -61,7 +63,7 @@ export const projects: Project[] = [
         image: "/images/skeleton-rush.png",
         title: "Skeleton Rush",
         summary: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
-        description: "A 2.5D shooter video game. 2.5D refers to games developed in a 3D environment but with movements constrained in 2 axis. You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken.",
+        description: "A run and gun videogame developed in a 3D environment but with movements constrained in 2 axis (2.5D). You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken.",
         techs: ["Unity3D", "C#", "Javascript", "HTML", "CSS", "Bootstrap", "SQL", "PHP"],
         meta: "Personal Project, developer",
         id: "skeletonRush",
@@ -71,7 +73,7 @@ export const projects: Project[] = [
         image: "/images/fearless-run.jpg",
         title: "Fearless Run",
         summary: "A mobile arcade video game. Dodge enemies and get the highest score",
-        description: "A simple 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities.",
+        description: "A 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities. The main game-mode includes a final score wihch is calculated by multiplying the seconds you were able to survive on each stage",
         techs: ["Unity3D", "C#", "Play Store"],
         meta: "Personal Project, developer",
         id: "fearlessRun",
@@ -80,8 +82,8 @@ export const projects: Project[] = [
     {
         image: "/images/3dmaze.png",
         title: "3D Procedural Maze",
-        summary: "A 3D procedurally generated maze video game. Collect gems, open doors with keys, and reach the exit",
-        description: "This is a maze runner game that takes place in a square-grid maze generated procedurally with a random seed. The player starts in one corner and must find their way to the end of the maze in the other corner. The lockblock prevents the player from completing the maze. The lockblock can be removed from the finishing tile if the player finds the key. Gems can be gathered to increase the final score to compete on a leaderboard",
+        summary: "A generated maze video game. Collect gems, open doors with keys, and reach the exit",
+        description: "3D Procedural Maze is a maze runner game that takes place in a square-grid maze generated procedurally with a random seed. The player starts in one corner and must find their way to the end of the maze in the other corner. A lockblock prevents the user from exiting the maze and can be removed by finding the key. Gems can be gathered to increase the final score to compete on a leaderboard",
         techs: ["Unity3D", "C#", "ai-navigation", "nunit", "test-framework"],
         meta: "School Project, developer",
         id: "3dmaze",
@@ -91,7 +93,7 @@ export const projects: Project[] = [
         image: "/images/bouncing-heads.png",
         title: "Bouncing Heads",
         summary: "A physics-driven Unity game where head-shaped avatars bounce, collide, and compete in an arena",
-        description: "Bouncing Heads is a Unity game focused on dynamic collisions between characters with large heads. Players fight in an enclosed arena, applying forces to knock opponents while collecting coins for a higher score. The core mechanics rely on Unity’s physics engine (rigidbodies, colliders) and UI elements.",
+        description: "Bouncing Heads is a Unity game focused on dynamic collisions between characters. Players fight in an enclosed arena, applying forces to knock opponents while collecting coins for a higher final score. The core mechanics rely on Unity’s physics engine paired with UI elements.",
         techs: ["Unity", "C#"],
         meta: "Personal Project, developer",
         id: "bouncingheads",
@@ -101,7 +103,7 @@ export const projects: Project[] = [
         image: "/images/meal-app.jpg",
         title: "Meal App",
         summary: "A mobile app for browsing, filtering, and favoriting meals by category.",
-        description: "Meal App is a React Native application that lets users explore a collection of meals organized by categories. Each meal displays ingredients, preparation steps, and dietary information. Users can filter meals based on preferences such as vegan, gluten-free, or lactose-free, and mark their favorite recipes for quick access. The app uses React Navigation for screen transitions and static data for meals and categories.",
+        description: "Meal App is a React Native application that lets users explore a collection of meals organized by categories. Each meal displays ingredients, preparation steps, and dietary information. Users can filter meals based on preferences such as vegan, gluten-free, or lactose-free, and mark their favorite recipes for quick access.",
         techs: ["React Native", "Expo", "JavaScript", "React Navigation"],
         meta: "School Project, developer",
         id: "mealapp",
@@ -111,7 +113,7 @@ export const projects: Project[] = [
         image: "/images/nfc-medical.png",
         title: "NFC Medical",
         summary: "An Android app integrating NFC for medical data access or patient identification",
-        description: "Designed and developed a mobile application which interfaces with a unique-per-person NFC tag, which allows first-responders such as EMTs to quickly access a patient’s relevant medical information to provide the best emergency care",
+        description: "NFC Medical was designed for mobile phones to interfacs with a unique-per-person NFC tag, which allows first-responders such as EMTs to quickly access a patient’s relevant medical information to provide the best emergency care",
         techs: ["Android", "Java", "NFC", "Encryption", "REST API"],
         meta: "School Project, developer",
         id: "nfc-medical",
@@ -131,7 +133,7 @@ export const projects: Project[] = [
         image: "/images/student-registration.jpg",
         title: "Student Registration System",
         summary: "A full-stack web application for managing student course registrations with email verification.",
-        description: "Student Registration System is a Node.js and MySQL-based web application designed to manage academic course enrollment. Students can register with email verification, view available courses by academic year, and enroll in them. The system enforces validation rules such as matching courses to selected years and ensures data persistence through a MySQL database. The project includes both client and server code, along with a SQL dump for database setup.",
+        description: "Student Registration System is a full-stack web application designed to manage academic course enrollment. Students can register with email verification, view available courses by academic year, and enroll in them. The system enforces validation rules such as matching courses to selected years and prerequisites, ensuring data persistence through a database",
         techs: ["Node.js", "Express", "MySQL", "JavaScript", "HTML", "CSS"],
         meta: "School Project, developer",
         id: "studentregistration",

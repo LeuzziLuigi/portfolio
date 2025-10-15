@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps(['activeSection'])
+defineProps<{
+  activeSection: string
+}>()
 defineEmits(['sectionSelected'])
 import {
   Sidebar,
@@ -8,28 +10,10 @@ import {
   SidebarHeader,
 } from '@/components/ui/sidebar'
 
+import { sections } from '@/data/sections';
 import { personalInfo, aboutText } from '@/data/personal'
 
 import { Github, Linkedin } from 'lucide-vue-next'
-
-
-const sections = [
-  {
-    name: "About",
-    url: "#",
-    icon: "icon"
-  },
-  {
-    name: "Projects",
-    url: "#",
-    icon: "icon"
-  },
-  {
-    name: "Skills",
-    url: "#",
-    icon: "icon"
-  },
-];
 
 </script>
 
@@ -42,9 +26,9 @@ const sections = [
     </SidebarHeader>
     <SidebarContent>
       <div v-for="section in sections" class="m-1">
-        <button @click="$emit('sectionSelected', section.name)" class="w-full p-2 cursor-pointer"
-          :class="activeSection === section.name.toLowerCase() ? 'bg-background' : ''">
-          {{ section.name }}
+        <button @click="$emit('sectionSelected', section.id)" class="w-full p-2 cursor-pointer"
+          :class="activeSection === section.id ? 'bg-background' : ''">
+          {{ section.displayText }}
         </button>
       </div>
     </SidebarContent>

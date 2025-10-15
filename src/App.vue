@@ -1,93 +1,76 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-import { Info, Scroll } from 'lucide-vue-next'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { Info } from 'lucide-vue-next'
 
-// Data imports
 import { personalInfo, aboutText } from '@/data/personal'
-import { projects } from '@/data/projects'
+import { professionalProjects, personalProjects } from '@/data/projects'
 import { skills } from '@/data/skills'
+import { sections } from '@/data/sections';
 
 import AppSidebar from '@/components/AppSidebar.vue'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { SquareArrowOutUpRight } from 'lucide-vue-next'
+import AppProject from '@/components/AppProject.vue'
 
 
 // Initialize dark mode
 document.documentElement.classList.add('dark')
 
-// Handle active section (click)
+// Handle active section 
+const activeSection = ref('about')
+const stack: any[] = [];
+
 const scrollToSection = (sectionId: string) => {
-  console.log(sectionId)
-  sectionId = sectionId.toLowerCase();
   const element = document.getElementById(sectionId)
 
-  if (!element) return
+  if (!element) return;
+
+  while (stack.length) stack.pop();
+
+  if (sections[sections.length - 1].id == sectionId) stack.push(sections[sections.length - 2].id);
+  stack.push(sectionId) // add to stack
 
   element.scrollIntoView({ behavior: "smooth" });
 }
-
-// Handle active section (scroll)
-const activeSection = ref('about')
 
 const options = {
   rootMargin: "0px",
   scrollMargin: "-200px",
 };
 
-function onAboutIntersection([e]: any) {
-  if (e.isIntersecting) activeSection.value = "about";
-  else if (activeSection.value == 'about') activeSection.value = "projects";
+function onIntersection([e]: any) {
+  if (e.isIntersecting) {  // add to stack
+    if (!stack.includes(e.target.id)) stack.push(e.target.id)
+  }
+  if (!e.isIntersecting) {  // remove from stack
+    const i = stack.indexOf(e.target.id);
+    if (i != -1) stack.splice(i, 1);
+  }
+  activeSection.value = stack[stack.length - 1] // active section is always equalso to last item in stack
 }
 
-function onSkillsIntersection([e]: any) {
-  if (e.isIntersecting) activeSection.value = "skills";
-  else if (activeSection.value == 'skills') activeSection.value = "projects";
-}
-
-const aboutObserver = new IntersectionObserver(onAboutIntersection, options);
-const skillsObserver = new IntersectionObserver(onSkillsIntersection, options);
-
+const intersectionObserver = new IntersectionObserver(onIntersection, options);
 onMounted(() => {
-  const aboutRef = document.getElementById("about")!;
-  aboutObserver.observe(aboutRef);
-
-  const skillsRef = document.getElementById("skills")!;
-  skillsObserver.observe(skillsRef);
+  sections.forEach(section => {
+    const ref = document.getElementById(section.id)
+    if (ref) {
+      intersectionObserver.observe(ref);
+    }
+  });
 });
 
 onUnmounted(() => {
-  aboutObserver.disconnect();
-  skillsObserver.disconnect();
+  intersectionObserver.disconnect();
 });
-
-
-import { cn } from "@/lib/utils";
-import { computed } from "vue";
-
-interface FlipCardProps {
-  rotate?: "x" | "y";
-  class?: string;
-}
-
-const props = withDefaults(defineProps<FlipCardProps>(), {
-  rotate: "y",
-});
-const rotationClass = {
-  x: ["group-hover:[transform:rotateX(180deg)]", "[transform:rotateX(180deg)]"],
-  y: ["group-hover:[transform:rotateY(180deg)]", "[transform:rotateY(180deg)]"],
-};
-
-const rotation = computed(() => rotationClass[props.rotate]);
-
 </script>
 
 <template>
@@ -105,69 +88,41 @@ const rotation = computed(() => rotationClass[props.rotate]);
       </div>
       <main class="pt-5">
         <!-- About Section -->
-        <section id="about" class="section">
-          <h1 class="mb-4 text-5xl">
-            About</h1>
+        <section :id="sections[0].id" class="section">
+          <h1 class="mb-4 text-5xl">{{ sections[0].displayText }}</h1>
           <p class="text-justify mb-3">{{ aboutText[0] }}</p>
           <p class="text-justify mb-3">{{ aboutText[1] }}</p>
           <p class="text-justify">{{ aboutText[2] }}</p>
         </section>
         <Separator class="section-separator" />
-        <!-- Projects Section -->
-        <section id="projects" class="section">
+        <!-- Professional Projects Section -->
+        <section :id="sections[1].id" class="section">
           <div class="flex">
-            <h1 class="mb-4">Projects</h1>
+            <h1 class="mb-4">{{ sections[1].displayText }}</h1>
           </div>
 
           <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-center pt-2 pb-2">
-            <article v-for="project in projects" :key="project.title"
-              class="border text-center rounded-[20px] bg-sidebar">
-              <div class="flex flex-col h-full justify-between ">
-                <div>
-                  <div class="flex justify-center p-2">
-                    <h3>{{ project.title }}</h3>
-                    <a v-if="project.link" :href="project.link" target="_blank" class="self-center">
-                      <SquareArrowOutUpRight class="w-4 ml-2 text-muted-foreground hover:text-chart-2" />
-                    </a>
-                  </div>
-                </div>
-                <div :class="cn('group [perspective:1000px]', props.class)" style="aspect-ratio: 3/2;">
-                  <div :class="cn(
-                    'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
-                    rotation[0],
-                  )
-                    ">
-                    <!-- Front -->
-                    <div class="absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]">
-                      <img class="w-full h-full " :src="project.image" :alt="project.title" />
-                    </div>
 
-                    <!-- Back -->
-                    <ScrollArea :class="cn(
-                      'absolute w-full h-full  rounded-2xl border bg-card text-sm text-slate-200 [backface-visibility:hidden]',
-                      rotation[1],
-                    )
-                      ">
-                      <p class="p-2 sm:px-4">
-                        {{ project.description }}
-                      </p>
-                      <div class="flex flex-wrap gap-2 p-2 sm:px-4">
-                        <span v-for="tech in project.techs" :key="project.title" class="pr-2">
-                          <Badge>{{ tech }}</Badge>
-                        </span>
-                      </div>
-                    </ScrollArea>
-                  </div>
-                </div>
-              </div>
-            </article>
+            <AppProject :project="project" v-for="project in professionalProjects" :key="project.title"></AppProject>
+          </div>
+        </section>
+        <Separator class="section-separator" />
+        <!-- Personal Projects Section -->
+        <section :id="sections[2].id" class="section">
+          <div class="flex">
+            <h1 class="mb-4">{{ sections[2].displayText }}</h1>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-center pt-2 pb-2">
+
+            <AppProject :project="project" v-for="project in personalProjects" :key="project.title"></AppProject>
           </div>
         </section>
         <Separator class="section-separator" />
         <!-- Skills Section -->
-        <section id="skills" class="section">
+        <section :id="sections[3].id" class="section">
           <div class="flex">
-            <h1 class="mb-4">Skills</h1>
+            <h1 class="mb-4">{{ sections[3].displayText }}</h1>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
@@ -180,9 +135,9 @@ const rotation = computed(() => rotationClass[props.rotate]);
             </TooltipProvider>
           </div>
 
-          <div v-for="(section, index) in skills" :key="section.name">
-            <h3>{{ section.name }}</h3>
-            <span v-for="skill in section.list" :key="skill.name" class="pr-2">
+          <div v-for="(skillSection, index) in skills" :key="skillSection.name">
+            <h3>{{ skillSection.name }}</h3>
+            <span v-for="skill in skillSection.list" :key="skill.name" class="pr-2">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -196,6 +151,15 @@ const rotation = computed(() => rotationClass[props.rotate]);
             </span>
             <Separator v-if="index < skills.length - 1" />
           </div>
+        </section>
+        <Separator class="section-separator" />
+        <!-- Contact Section -->
+        <section :id="sections[4].id" class="section">
+          <h1 class="mb-4">{{ sections[4].displayText }}</h1>
+          <p>email</p>
+          <p>phone</p>
+          <p>linkedin</p>
+          <p>github</p>
         </section>
       </main>
 
@@ -230,7 +194,7 @@ const rotation = computed(() => rotationClass[props.rotate]);
 @media (min-width: 1024px) {
   .section {
     width: calc(100% - 4em);
-    max-width: 1300px;
+    max-width: 1200px;
   }
 }
 </style>
