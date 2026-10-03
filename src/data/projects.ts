@@ -60,14 +60,14 @@ export const personalProjects: Project[] = [
         link: "https://github.com/LeuzziLuigi/TheWeeklyBucket"
     },
     {
-        image: "/images/skeleton-rush.png",
-        title: "Skeleton Rush",
-        summary: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
-        description: "A run and gun videogame developed in a 3D environment but with movements constrained in 2 axis (2.5D). You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken.",
-        techs: ["Unity3D", "C#", "Javascript", "HTML", "CSS", "Bootstrap", "SQL", "PHP"],
+        image: "/images/makinaime24.png",
+        title: "Makinaime24",
+        summary: "A mobile arcade video game. Dodge enemies and get the highest score",
+        description: "A Website to Buy and Sell used Cars. Sellers can upgrade to Dealers to sell and manage multiple listings, build a Dealer Page, and modify contact preferences. Buyers can filter and add/favorite listings. Buyers can add dealers to favorites, rate them, and contact them through built-in messages, emails, or phone",
+        techs: ["Nextjs", "Supabase"],
         meta: "Personal Project, developer",
-        id: "skeletonRush",
-        link: "http://skeletonrush.altervista.org/"
+        id: "makinaime24",
+        link: "https://youtu.be/ySzHJl0wx9A"
     },
     {
         image: "/images/fearless-run.jpg",
@@ -77,7 +77,17 @@ export const personalProjects: Project[] = [
         techs: ["Unity3D", "C#", "Play Store"],
         meta: "Personal Project, developer",
         id: "fearlessRun",
-        link: "https://github.com/LeuzziLuigi/Fearless-Land"
+        link: "https://youtu.be/ySzHJl0wx9A"
+    },
+    {
+        image: "/images/skeleton-rush.png",
+        title: "Skeleton Rush",
+        summary: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
+        description: "A run and gun videogame developed in a 3D environment but with movements constrained in 2 axis (2.5D). You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken.",
+        techs: ["Unity3D", "C#", "Javascript", "HTML", "CSS", "Bootstrap", "SQL", "PHP"],
+        meta: "Personal Project, developer",
+        id: "skeletonRush",
+        link: "http://skeletonrush.altervista.org/"
     },
     {
         image: "/images/3dmaze.png",
