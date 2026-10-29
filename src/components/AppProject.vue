@@ -25,7 +25,7 @@ const rotation = computed(() => rotationClass['y']);
       <div>
         <div class="flex justify-center p-2">
           <h3>{{ project.title }}</h3>
-          <a v-if="project.link" :href="project.link" target="_blank" class="self-center">
+          <a v-if="project.link" :href="project.link" :target="project.link.startsWith('/') ? undefined : '_blank'" class="self-center">
             <SquareArrowOutUpRight class="w-4 ml-2 text-muted-foreground hover:text-chart-2" />
           </a>
         </div>

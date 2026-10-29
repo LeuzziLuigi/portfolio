@@ -77,7 +77,7 @@ export const personalProjects: Project[] = [
         techs: ["Unity3D", "C#", "Play Store"],
         meta: "Personal Project, developer",
         id: "fearlessRun",
-        link: "https://youtu.be/ySzHJl0wx9A"
+        link: "/fearless-land"
     },
     {
         image: "/images/skeleton-rush.png",
