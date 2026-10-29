@@ -40,6 +40,26 @@ export const professionalProjects: Project[] = [
 ];
 export const personalProjects: Project[] = [
     {
+        image: "/images/makinaime24.png",
+        title: "Makinaime24",
+        summary: "A Website to Buy and Sell used Cars",
+        description: "Sellers can upgrade to Dealers to sell and manage multiple listings, build a Dealer Page, and modify contact preferences. Buyers can filter and add/favorite listings. Buyers can add dealers to favorites, rate them, and contact them through built-in messages, emails, or phone",
+        techs: ["Nextjs", "Supabase"],
+        meta: "Personal Project, developer",
+        id: "makinaime24",
+        link: "https://www.makinaime24.com/"
+    },
+    {
+        image: "/images/fearless-run.jpg",
+        title: "Fearless Run",
+        summary: "A mobile arcade video game. Dodge enemies and get the highest score",
+        description: "A 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities. The main game-mode includes a final score wihch is calculated by multiplying the seconds you were able to survive on each stage",
+        techs: ["Unity3D", "C#", "Play Store"],
+        meta: "Personal Project, developer",
+        id: "fearlessRun",
+        link: "/fearless-land"
+    },
+    {
         image: "/images/traffic-object-recognition.png",
         title: "Traffic Object Recognition",
         summary: "Machine learning models for vehicle detection, classification, and road condition analysis.",
@@ -58,26 +78,6 @@ export const personalProjects: Project[] = [
         meta: "College Project, front-end",
         id: "weeklyBucket",
         link: "https://github.com/LeuzziLuigi/TheWeeklyBucket"
-    },
-    {
-        image: "/images/makinaime24.png",
-        title: "Makinaime24",
-        summary: "A mobile arcade video game. Dodge enemies and get the highest score",
-        description: "A Website to Buy and Sell used Cars. Sellers can upgrade to Dealers to sell and manage multiple listings, build a Dealer Page, and modify contact preferences. Buyers can filter and add/favorite listings. Buyers can add dealers to favorites, rate them, and contact them through built-in messages, emails, or phone",
-        techs: ["Nextjs", "Supabase"],
-        meta: "Personal Project, developer",
-        id: "makinaime24",
-        link: "https://youtu.be/ySzHJl0wx9A"
-    },
-    {
-        image: "/images/fearless-run.jpg",
-        title: "Fearless Run",
-        summary: "A mobile arcade video game. Dodge enemies and get the highest score",
-        description: "A 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities. The main game-mode includes a final score wihch is calculated by multiplying the seconds you were able to survive on each stage",
-        techs: ["Unity3D", "C#", "Play Store"],
-        meta: "Personal Project, developer",
-        id: "fearlessRun",
-        link: "/fearless-land"
     },
     {
         image: "/images/skeleton-rush.png",
