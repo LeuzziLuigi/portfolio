@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { useColorMode } from '@vueuse/core'
 
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -20,11 +21,24 @@ import { sections } from '@/data/sections';
 
 import AppSidebar from '@/components/AppSidebar.vue'
 import AppProject from '@/components/AppProject.vue'
+import ThemeToggle from '@/components/ThemeToggle.vue'
+import bannerDark from '@/assets/banner2.webp'
+import bannerLight from '@/assets/banner_light.webp'
 
 
 // Handle active section 
 const activeSection = ref('about')
 const stack: any[] = [];
+
+const { state: colorMode } = useColorMode({
+  attribute: 'class',
+  modes: {
+    light: '',
+    dark: 'dark',
+  },
+  storageKey: 'portfolio-color-mode',
+})
+const bannerImage = computed(() => colorMode.value === 'dark' ? bannerDark : bannerLight)
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
@@ -76,12 +90,13 @@ onUnmounted(() => {
     <AppSidebar :active-section="activeSection" @section-selected="scrollToSection" />
     <!-- Main Section -->
     <ScrollArea class="h-screen w-screen flex center">
-      <header class="sticky top-0 bg-background p-2 z-1 md:hidden">
+      <header class="sticky top-0 z-1 flex items-center gap-2 bg-background p-2 md:hidden">
         <SidebarTrigger />
-        <span class="float-right">{{ personalInfo.name }} portfolio</span>
+        <span class="ml-auto">{{ personalInfo.name }} portfolio</span>
+        <ThemeToggle />
       </header>
-      <div class="hidden md:block md:h-70 lg:h-80">
-        <img src="./assets/banner2.webp" class="object-cover w-full h-full">
+      <div class="banner hidden md:block md:h-70 lg:h-80">
+        <img :src="bannerImage" class="object-cover w-full h-full">
       </div>
       <main class="pt-5">
         <!-- About Section -->
@@ -177,6 +192,26 @@ onUnmounted(() => {
 .section-separator {
   height: 5px;
   width: 100%;
+}
+
+.banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  content: '';
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--background), transparent 28%),
+    linear-gradient(to left, var(--background), transparent 28%),
+    linear-gradient(to bottom, var(--background), transparent 28%),
+    linear-gradient(to top, var(--background), transparent 38%);
 }
 
 @media (min-width: 640px) {

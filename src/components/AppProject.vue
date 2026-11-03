@@ -21,7 +21,7 @@ const hasOpenedProject = ref(false)
 </script>
 
 <template>
-  <article class="border text-center rounded-[20px] bg-sidebar w-full">
+  <article class="border text-center rounded-[20px] bg-card shadow-sm w-full">
     <div class="flex flex-col h-full justify-between ">
       <div>
         <div class="flex justify-center p-2">
@@ -33,7 +33,7 @@ const hasOpenedProject = ref(false)
           </a>
         </div>
       </div>
-      <div :class="cn('group [perspective:1000px]')" style="aspect-ratio: 3/2;">
+      <div :class="cn('group [perspective:1000px]')" style="aspect-ratio: 16/9;">
         <div :class="cn(
           'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
           rotation[0],
@@ -46,7 +46,7 @@ const hasOpenedProject = ref(false)
 
           <!-- Back -->
           <div :class="cn(
-            'absolute w-full h-full flex flex-col justify-between p-4 rounded-2xl border bg-card text-slate-200 [backface-visibility:hidden] overflow-auto left-0',
+            'absolute w-full h-full flex flex-col justify-between p-4 rounded-2xl border bg-card text-card-foreground [backface-visibility:hidden] overflow-auto left-0',
             rotation[1],
           )
             ">

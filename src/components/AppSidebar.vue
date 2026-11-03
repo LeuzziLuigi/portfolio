@@ -14,6 +14,7 @@ import { sections } from '@/data/sections';
 import { personalInfo, aboutText } from '@/data/personal'
 
 import { Github, Linkedin } from 'lucide-vue-next'
+import ThemeToggle from '@/components/ThemeToggle.vue'
 
 </script>
 
@@ -32,7 +33,8 @@ import { Github, Linkedin } from 'lucide-vue-next'
         </button>
       </div>
     </SidebarContent>
-    <SidebarFooter class="p-5 flex place-items-center">
+    <SidebarFooter class="p-5 flex place-items-center gap-2">
+      <ThemeToggle />
       <div class="flex gap-4 mt-2 pl-1.5">
         <a :href="personalInfo.github" target="_blank" rel="noopener noreferrer">
           <Github class="h-6 w-6 text-muted-foreground hover:text-chart-2" />
