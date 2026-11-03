@@ -80,8 +80,8 @@ onUnmounted(() => {
         <SidebarTrigger />
         <span class="float-right">{{ personalInfo.name }} portfolio</span>
       </header>
-      <div class="h-40 sm:h-60 md:h-70 lg:h-80">
-        <img src="./assets/banner.webp" class="object-cover w-full h-full">
+      <div class="hidden md:block md:h-70 lg:h-80">
+        <img src="./assets/banner2.webp" class="object-cover w-full h-full">
       </div>
       <main class="pt-5">
         <!-- About Section -->
