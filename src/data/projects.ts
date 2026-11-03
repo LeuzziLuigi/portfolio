@@ -2,7 +2,7 @@ import type { Project } from "@/types"
 
 export const professionalProjects: Project[] = [
     {
-        image: "/images/apptor.png",
+        image: "/images/apptor.webp",
         title: "Apptor",
         summary: "Low code Web Application. From UI to Data management to Deployment, Apptor streamlines this process",
         description: "From UI to Data management to Deployment, Apptor streamlines this process making it easier to develop applications. Components can easily be customized by dragging and dropping them onto the canvas. Events can be created and catched to add customizible actions. Everything is converted into JSON which will then be parsed by the framework. I have worked on multiple features gaining familiarity with the whole codebase.",
@@ -11,7 +11,7 @@ export const professionalProjects: Project[] = [
         id: "apptor"
     },
     {
-        image: "/images/unity-tools.jpg",
+        image: "/images/unity-tools.webp",
         title: "XR Ambisonics",
         summary: "Unity Tools to create music-reactive visualizations",
         description: "I developed Unity tools to streamline my customer workflow of generating various shapes that react to music. Visualizations can be viewed in Virtual Reality or through the mobile app, where there are guided experiences that allow users to see visualizations in augmented reality with the phone camera at specific locations in the world.",
@@ -20,7 +20,7 @@ export const professionalProjects: Project[] = [
         id: "xrAmbisonics"
     },
     {
-        image: "/images/resource-advisor.jpg",
+        image: "/images/resource-advisor.webp",
         title: "Resource Advisor",
         summary: "Hub for energy, ESG, and sustainability data with tailored visualization and reporting.",
         description: "I have architected the micro-frontend for the app. It uses Native Federation to optimize loading times through library caching and a custom Event Bus to promote decoupled communication within the framework. Afterwards I implemented infinite scrolling for better user experience and ensured that widgets render properly across pages for the secure printing functionality. Additioanlly I have converted CI/CD pipelines from github actions to azure.",
@@ -29,7 +29,7 @@ export const professionalProjects: Project[] = [
         id: "resourceAdvisor"
     },
     {
-        image: "/images/zeigo-activate.png",
+        image: "/images/zeigo-activate.webp",
         title: "Zeigo Activate",
         summary: "Platform for small and medium-sized enterprises to reduce their environmental impact",
         description: "I developed a interactive tour and the front-end for a chatbot, integrating with the APIs to support multiple types of messages. Daily tasks include the classic fetures/bugs experience through Jira paired with daily standup following the Agile methodology. I have delivered pixel-perfect responsive UI in a high-paced enviroment working cross-functionally with the product and business teams.",
@@ -40,7 +40,7 @@ export const professionalProjects: Project[] = [
 ];
 export const personalProjects: Project[] = [
     {
-        image: "/images/makinaime24.png",
+        image: "/images/makinaime24.webp",
         title: "Makinaime24",
         summary: "A Website to Buy and Sell used Cars",
         description: "Sellers can upgrade to Dealers to sell and manage multiple listings, build a Dealer Page, and modify contact preferences. Buyers can filter and add/favorite listings. Buyers can add dealers to favorites, rate them, and contact them through built-in messages, emails, or phone",
@@ -50,7 +50,7 @@ export const personalProjects: Project[] = [
         link: "https://www.makinaime24.com/"
     },
     {
-        image: "/images/fearless-run.jpg",
+        image: "/images/fearless-run.webp",
         title: "Fearless Run",
         summary: "A mobile arcade video game. Dodge enemies and get the highest score",
         description: "A 2D arcade games where you must survive as long as possible by dodging incoming enemies. The game contains 3 stages and different gamemodes, with different art and enemy abilities. The main game-mode includes a final score wihch is calculated by multiplying the seconds you were able to survive on each stage",
@@ -60,7 +60,7 @@ export const personalProjects: Project[] = [
         link: "/fearless-land"
     },
     {
-        image: "/images/traffic-object-recognition.png",
+        image: "/images/traffic-object-recognition.webp",
         title: "Traffic Object Recognition",
         summary: "Machine learning models for vehicle detection, classification, and road condition analysis.",
         description: "Collaborated with real stakeholders to train models for tracking vehicles. It is possible to count and classify vehicles. It is also possible to detect the conditions of the road such as clear, snow, and rain. A Full-Stack Application was made to access the tools and settings more easily. A different app was also provided to enable customers to further train models",
@@ -70,7 +70,7 @@ export const personalProjects: Project[] = [
         link: "https://github.com/jessearonsona/Traffic-Object-Recognition"
     },
     {
-        image: "/images/weekly-bucket.jpg",
+        image: "/images/weekly-bucket.webp",
         title: "Weekly Bucket",
         summary: "Weekly planner with intuitive user interface",
         description: "Weekly Bucket allows to enter or select tasks paired with the number of times planned to achieve weekly. Completly a tasked is as simple as clicking on it. Track your history and modify tasks at any time.",
@@ -80,7 +80,7 @@ export const personalProjects: Project[] = [
         link: "https://github.com/LeuzziLuigi/TheWeeklyBucket"
     },
     {
-        image: "/images/skeleton-rush.png",
+        image: "/images/skeleton-rush.webp",
         title: "Skeleton Rush",
         summary: "A 2.5D shooter video game. Defeat enemies and avoid obstacles as fast as you can",
         description: "A run and gun videogame developed in a 3D environment but with movements constrained in 2 axis (2.5D). You can compete on a global leaderboard optimizing your speed, enemies defeated, and damage taken.",
@@ -90,7 +90,7 @@ export const personalProjects: Project[] = [
         link: "http://skeletonrush.altervista.org/"
     },
     {
-        image: "/images/3dmaze.png",
+        image: "/images/3dmaze.webp",
         title: "3D Procedural Maze",
         summary: "A generated maze video game. Collect gems, open doors with keys, and reach the exit",
         description: "3D Procedural Maze is a maze runner game that takes place in a square-grid maze generated procedurally with a random seed. The player starts in one corner and must find their way to the end of the maze in the other corner. A lockblock prevents the user from exiting the maze and can be removed by finding the key. Gems can be gathered to increase the final score to compete on a leaderboard",
@@ -100,7 +100,7 @@ export const personalProjects: Project[] = [
         link: "https://github.com/LeuzziLuigi/3D-Generated-Maze"
     },
     {
-        image: "/images/bouncing-heads.png",
+        image: "/images/bouncing-heads.webp",
         title: "Bouncing Heads",
         summary: "A physics-driven Unity game where head-shaped avatars bounce, collide, and compete in an arena",
         description: "Bouncing Heads is a Unity game focused on dynamic collisions between characters. Players fight in an enclosed arena, applying forces to knock opponents while collecting coins for a higher final score. The core mechanics rely on Unity’s physics engine paired with UI elements.",
@@ -120,7 +120,7 @@ export const personalProjects: Project[] = [
         link: "https://github.com/LeuzziLuigi/MealApp"
     },
     {
-        image: "/images/nfc-medical.png",
+        image: "/images/nfc-medical.webp",
         title: "NFC Medical",
         summary: "An Android app integrating NFC for medical data access or patient identification",
         description: "NFC Medical was designed for mobile phones to interfacs with a unique-per-person NFC tag, which allows first-responders such as EMTs to quickly access a patient’s relevant medical information to provide the best emergency care",
@@ -130,7 +130,7 @@ export const personalProjects: Project[] = [
         link: "https://github.com/shearjac/NFC-Medical"
     },
     {
-        image: "/images/survey-it.png",
+        image: "/images/survey-it.webp",
         title: "SurveyIT",
         summary: "A full-stack web application for companies to create and manage surveys",
         description: "SurveyIT enables users to create, distribute, and analyze surveys. The application features a user-friendly interface for survey creation, supports various question types, and provides tools for analyzing responses. The project is structured with a dedicated server for backend operations, a shared module for common functionalities, and a web frontend for user interaction.",
@@ -140,7 +140,7 @@ export const personalProjects: Project[] = [
         link: "https://github.com/dmaahs2017/surveyIT"
     },
     {
-        image: "/images/student-registration.jpg",
+        image: "/images/student-registration.webp",
         title: "Student Registration System",
         summary: "A full-stack web application for managing student course registrations with email verification.",
         description: "Student Registration System is a full-stack web application designed to manage academic course enrollment. Students can register with email verification, view available courses by academic year, and enroll in them. The system enforces validation rules such as matching courses to selected years and prerequisites, ensuring data persistence through a database",

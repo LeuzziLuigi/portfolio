@@ -27,9 +27,9 @@ const technologies = ['Unity3D', 'C#', 'Mobile game development']
     </section>
 
     <section class="showcase" aria-label="Fearless Run gameplay recording">
-      <div class="video-shell"><video controls preload="metadata" poster="/images/fearless-run.jpg"><source src="/fearlessRun/Recording_FearlessLand.mp4" type="video/mp4" />Your browser does not support embedded video.</video></div>
+      <div class="video-shell"><video controls preload="metadata" :poster="'/images/fearless-run.webp'"><source src="/fearlessRun/Recording_FearlessLand.mp4" type="video/mp4" />Your browser does not support embedded video.</video></div>
       <p class="video-caption">Gameplay recording</p>
-      <img class="sprite sprite-right" src="/fearlessRun/player_facing_right.png" alt="" />
+      <img class="sprite sprite-right" :src="'/fearlessRun/player_facing_right.webp'" alt="" />
     </section>
   </main>
 </template>
@@ -38,7 +38,7 @@ const technologies = ['Unity3D', 'C#', 'Mobile game development']
 :global(html), :global(body), :global(#app) { min-height: 100%; }
 :global(html) { overflow: hidden; }
 .fearless-land { --violet: #8d57db; position: relative; isolation: isolate; min-height: 100dvh; overflow: hidden; display: grid; grid-template-columns: minmax(300px, .92fr) minmax(360px, .8fr); align-items: center; gap: clamp(2rem, 5vw, 7rem); padding: clamp(2rem, 5vw, 5rem) clamp(2rem, 9vw, 11rem); color: #fff; background: #050526; }
-.backdrop { position: absolute; z-index: -2; inset: 0; background: linear-gradient(100deg, rgba(3,3,31,.98) 10%, rgba(16,7,67,.91) 56%, rgba(10,6,48,.76)), url('/fearlessRun/background1.png') center / cover; }
+.backdrop { position: absolute; z-index: -2; inset: 0; background: linear-gradient(100deg, rgba(3,3,31,.98) 10%, rgba(16,7,67,.91) 56%, rgba(10,6,48,.76)), url('/fearlessRun/background1.webp') center / cover; }
 .backdrop::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 68% 39%, rgba(244,101,232,.28), transparent 26%); }
 .back-link { position: absolute; top: clamp(1.5rem, 3vw, 3rem); left: clamp(1.5rem, 4vw, 5rem); display: inline-flex; align-items: center; gap: .55rem; color: rgba(255,255,255,.78); font-size: .9rem; font-weight: 700; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
 .back-link:hover { color: #fff; transform: translateX(-3px); }

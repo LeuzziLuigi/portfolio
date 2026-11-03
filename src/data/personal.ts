@@ -7,7 +7,7 @@ export const personalInfo: PersonalInfo = {
         desktop: 'clean and intuitive user interfaces | scalable and performant systems',
         mobile: 'clean and intuitive UIs | scalable architectures'
     },
-    avatar: '/images/avatar.jpg',
+    avatar: '/images/avatar2.jpg',
     github: 'https://github.com/LeuzziLuigi',
     linkedin: 'https://www.linkedin.com/in/luigileuzzi/'
 }
