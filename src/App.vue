@@ -22,9 +22,6 @@ import AppSidebar from '@/components/AppSidebar.vue'
 import AppProject from '@/components/AppProject.vue'
 
 
-// Initialize dark mode
-document.documentElement.classList.add('dark')
-
 // Handle active section 
 const activeSection = ref('about')
 const stack: any[] = [];
@@ -84,7 +81,7 @@ onUnmounted(() => {
         <span class="float-right">{{ personalInfo.name }} portfolio</span>
       </header>
       <div class="h-40 sm:h-60 md:h-70 lg:h-80">
-        <img src="./assets/banner.jpg" class="object-cover w-full h-full">
+        <img src="./assets/banner.webp" class="object-cover w-full h-full">
       </div>
       <main class="pt-5">
         <!-- About Section -->

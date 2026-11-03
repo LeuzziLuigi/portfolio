@@ -5,6 +5,24 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+    <style>
+      :root { color-scheme: light dark; background: #f9f9f9; }
+      body, #app { margin: 0; min-height: 100vh; background: #f9f9f9; }
+      @media (prefers-color-scheme: dark) {
+        :root, body, #app { background: #181818; }
+      }
+    </style>
+    <script>
+      (() => {
+        const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
+        const applyColorScheme = () => {
+          document.documentElement.classList.toggle('dark', colorScheme.matches)
+        }
+
+        applyColorScheme()
+        colorScheme.addEventListener('change', applyColorScheme)
+      })()
+    </script>
   </head>
   <body>
     <div id="app"></div>
