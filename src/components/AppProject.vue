@@ -8,7 +8,7 @@ defineProps<{
 }>()
 
 import { cn } from "@/lib/utils";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 const rotationClass = {
   x: ["group-hover:[transform:rotateX(180deg)]", "[transform:rotateX(180deg)]"],
@@ -16,6 +16,7 @@ const rotationClass = {
 };
 
 const rotation = computed(() => rotationClass['y']);
+const hasOpenedProject = ref(false)
 
 </script>
 
@@ -25,8 +26,10 @@ const rotation = computed(() => rotationClass['y']);
       <div>
         <div class="flex justify-center p-2">
           <h3>{{ project.title }}</h3>
-          <a v-if="project.link" :href="project.link" :target="project.link.startsWith('/') ? undefined : '_blank'" class="self-center">
-            <SquareArrowOutUpRight class="w-4 ml-2 text-muted-foreground hover:text-chart-2" />
+          <a v-if="project.link" :href="project.link" :target="project.link.startsWith('/') ? undefined : '_blank'"
+            class="self-center" :aria-label="`Open ${project.title}`" @click="hasOpenedProject = true">
+            <SquareArrowOutUpRight class="w-4 ml-2 text-muted-foreground hover:text-chart-2"
+              :class="{ 'project-link--unvisited': !hasOpenedProject }" />
           </a>
         </div>
       </div>
@@ -61,4 +64,8 @@ const rotation = computed(() => rotationClass['y']);
     </div>
   </article>
 </template>
-<style scoped></style>
+<style scoped>
+.project-link--unvisited {
+  color: #089F73;
+}
+</style>
